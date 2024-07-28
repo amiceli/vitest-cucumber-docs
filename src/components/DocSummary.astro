@@ -11,8 +11,8 @@ const pages = [
 			{ path: "/features/gherkin", title: "Gherkin" },
 			{ path: "/features/scenario", title: "Scenario" },
 			{ path: "/features/scenario-outline", title: "Scenario Outline" },
+            { path: "/features/background", title: "Background" },
 			{ path: "/features/rule", title: "Rules" },
-			{ path: "/features/background", title: "Background" },
 			{ path: "/features/hooks", title: "Hooks" },
 			{ path: "/features/gherkin-tags", title: "Gherkin tags" },
 			{ path: "/features/sequentially-and-async", title: "Async steps and sequentially" },
@@ -52,6 +52,7 @@ function getLinkClass(pageUrl : string) {
                             </a>
                         }
                         {p.children?.length > 0 && (
+                            <span>{p.title}</span>
                             <ul>
                                 {p.children?.map((child) => {
                                     return (
