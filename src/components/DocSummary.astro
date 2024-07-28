@@ -27,7 +27,7 @@ const pages = [
 ];
 
 function getLinkClass(pageUrl : string) {
-	return url.pathname === pageUrl ? "is--active" : "";
+	return url.pathname === `${pageUrl}/` ? "is--active" : ``
 }
 ---
 
