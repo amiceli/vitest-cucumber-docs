@@ -150,90 +150,75 @@ function getLinkClass(pageUrl : string) : boolean {
             </nord-stack>
         </nord-layout>
     </body>
-
-    <script>
-        import "@nordhealth/components/lib/index";
-    </script>
-
-    <style lang="scss" is:global>
-        :root {
-            --n-color-accent: #1c2128;
-            --n-color-accent-secondary: #1c2128;
-        }
-    </style>
-
-    <style is:global lang="scss">
-        @import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap");
-        @import "@nordhealth/css/lib/nord.min.css";
-        @import "@nordhealth/themes/lib/nord-dark.css";
-
-        :root {
-            --main-color: #f87683;
-        }
-        html,
-        body {
-            padding: 0;
-            margin: 0;
-            font-family: "Exo 2", sans-serif;
-            font-optical-sizing: auto;
-            width: 100%;
-
-            main {
-                padding-top: 0;
-            }
-        }
-
-        pre {
-            width: 100%;
-        }
-
-        img {
-            width: 40px;
-            vertical-align: middle;
-            margin-left: 20px;
-            margin-right: 20px;
-        }
-
-        .is--footer {
-            text-align: center;
-        }
-    </style>
-
-    <style lang="scss" scoped>
-        .container:first-of-type {
-            margin-top: 100px;
-        }
-
-        .for--grid {
-            display: flex;
-            margin-top: 20px;
-            grid-gap: 100px;
-
-            &__left {
-                flex: 0 0 300px;
-            }
-            &__right {
-                flex: 1;
-                overflow-y: hidden;
-            }
-        }
-    </style>
 </html>
+<script>
+    import "@nordhealth/components/lib/index";
+</script>
 
-<!-- <main class="container-fluid">
-            <NavBar />
-            { !hideMenu && <div class="container">
-                <PackageDetails />
-            </div> }
-            { !hideMenu && <div class="container for--grid">
-                <div class="for--grid__left">
-                    <DocSummary />
-                </div>
-                <div class="for--grid__right">
-                    <slot />
-                </div>
-            </div> }
-            { hideMenu && <div class="container">
-                <slot />
-            </div> }
-        </main> -->
+<style lang="scss" is:global>
+    :root {
+        --n-color-accent: #1c2128;
+        --n-color-accent-secondary: #1c2128;
+    }
+</style>
+
+<style is:global lang="scss">
+    @import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap");
+    @import "@nordhealth/css/lib/nord.min.css";
+    @import "@nordhealth/themes/lib/nord-dark.css";
+
+    :root {
+        --main-color: #f87683;
+    }
+    html,
+    body {
+        padding: 0;
+        margin: 0;
+        font-family: "Exo 2", sans-serif;
+        font-optical-sizing: auto;
+        width: 100%;
+
+        main {
+            padding-top: 0;
+        }
+    }
+
+    pre {
+        width: 100%;
+    }
+
+    img {
+        width: 40px;
+        vertical-align: middle;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .is--footer {
+        text-align: center;
+    }
+
+    .astro-code {
+        padding: 24px;
+    }
+</style>
+
+<style lang="scss" scoped>
+    .container:first-of-type {
+        margin-top: 100px;
+    }
+
+    .for--grid {
+        display: flex;
+        margin-top: 20px;
+        grid-gap: 100px;
+
+        &__left {
+            flex: 0 0 300px;
+        }
+        &__right {
+            flex: 1;
+            overflow-y: hidden;
+        }
+    }
+</style>

@@ -1,4 +1,5 @@
 import Layout from '../../layouts/Layout.astro'
+import {Code} from 'astro:components';
 
 <Layout title="vitest-cucumber">
     # Background
@@ -9,7 +10,7 @@ import Layout from '../../layouts/Layout.astro'
 
     I'm still working on it but you can test it. It works like `Scenario` and it's available in `Rule` and/or `Feature.`
 
-    ~~~javascript
+    ~~~javascript filename="index.js"
     describeFeature(feature, ({Background, Scenario, Rule}) => {
         Background(({Given}) => {
             Given(`I'm a background`, async () => {})

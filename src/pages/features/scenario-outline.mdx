@@ -48,12 +48,14 @@ import Layout from '../../layouts/Layout.astro'
     In this example, we have 3 value lines in `Examples`.
 
     So it will be runned 3 times and `variables` contains each values : 
-    
+
+    <nord-table>
     | | pull-request                          | approves         |
     |-|-------------|-----------|
     | first run | `feat: add awesome feature`             | `Approves it`      |
     | second run | `tests: add awesome feature unit tests` | `Approves it`      |
     | last run | `big commit`                            | `Requests changes` |
+    </nord-table>
 
     Currently `variables` is `any` type and each value is `string`.
 
