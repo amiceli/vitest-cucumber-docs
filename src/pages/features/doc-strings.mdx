@@ -1,0 +1,122 @@
+import Layout from '../../layouts/Layout.astro'
+
+<Layout title="DocStrings">
+    # Usage
+
+    Since `v3.6.0` vitest-cucumber provides DocStrings with double quotes and backticks.
+
+    ~~~gherkin
+    Feature: DocStrings
+        Scenario: DocStrings example
+            Given I use vitest-cucumber
+            """
+            vitest-cucumber is a vitest tool
+            It provides to use Gherkin
+            """
+            Then  I use vitest
+            ```
+            vitest is awesome
+            ```
+    ~~~
+    
+    DocStrings value is passed at last parmeters in your step callback : 
+
+    ~~~typescript
+    describeFeature(feature, (f) => {
+        f.Scenario(`DocStrings example`, (s) => {
+            s.Given(`I use vitest-cucumber`, (ctx, docStrings: string) => {
+                expect(docStrings.split('\n')).toEqual([,
+                    'vitest-cucumber is a vitest tool',
+                    'It provides to use Gherkin'
+                ])
+            })
+            s.Then(`I use vitest`, (ctx, docStrings: string) => {
+                expect(docStrings).toEqual('vitest is awesome')
+            })
+        })
+    })
+    ~~~
+
+    ## DocStrings with Scneario Outline
+
+    When you use DocStrings in `Scenario Outline`, variable like `<framework>`
+    are replaced with `Examples`.
+
+    ~~~gherkin
+    Feature: DocStrings
+        Scenario Outline: DocStrings outline example
+            Given I use vitest-cucumber with <framework>
+            """
+            <framework> is a front-end framework
+            """
+            Then  I use vitest <version>
+            """
+            vitest <version> allow to use test.for
+            """
+            Examples:
+                | framework | version |
+                | Vue       | 2.0.0   |
+                | Stencil   | 2.0.4   |
+    ~~~
+
+    Example in your unit tests : 
+
+    ~~~typescript
+    describeFeature(feature, ({f}) => {
+        f.ScenarioOutline(`DocStrings outline example`, ({Given, Then}, variables) => {
+            Given(`I use vitest-cucumber with <framework>`, (ctx, docStrings : string) => {
+                expect([
+                    'Vue is a front-end framework',
+                    'Stencil is a front-end framework',
+                ]).toContain(docStrings)
+            })
+            Then(`I use vitest <version>`, (ctx, docStrings : string) => {
+                expect([
+                    'vitest 2.0.0 allow to use test.for',
+                    'vitest 2.0.4 allow to use test.for',
+                ]).toContain(docStrings)
+            })
+        })
+    })
+    ~~~
+
+    ## DocStrings with step expressions
+
+    In your tests when you use use Docstrings and expression like `{string}`.
+    
+    DocStrings value is last params : 
+
+    ~~~gherkin
+    Feature: DocStrings
+        Scenario: DocStrings example
+            Given I use "vitest-cucumber"
+            """
+            vitest-cucumber is a vitest tool
+            It provides to use Gherkin
+            """
+            Then  I use vitest
+            ```
+            vitest is awesome
+            ```
+    ~~~
+
+    In your tests : 
+    
+    ~~~typescript
+    describeFeature(feature, (f) => {
+        f.Scenario(`DocStrings example`, (s) => {
+            s.Given(`I use {string}`, (ctx, tool : string, docStrings: string) => {
+                expect(docStrings.split('\n')).toEqual([,
+                    'vitest-cucumber is a vitest tool',
+                    'It provides to use Gherkin'
+                ])
+                expect(tool).toEqual('vitest-cucumber')
+            })
+            s.Then(`I use vitest`, (ctx, docStrings: string) => {
+                expect(docStrings).toEqual('vitest is awesome')
+            })
+        })
+    })
+    ~~~
+    
+</Layout>

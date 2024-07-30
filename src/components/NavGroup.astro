@@ -1,0 +1,113 @@
+---
+const url = Astro.url
+
+function getLinkClass(pageUrl : string) : boolean {
+	return url.pathname.replaceAll('/', '') === pageUrl.replaceAll('/', '')
+}
+---
+
+<nord-navigation slot="nav">
+    <div slot="header">
+        <img src="/logo.png" />
+        vitest-cucumber
+    </div>
+    <nord-nav-item 
+        href="/" 
+        icon="file-script"
+        active={getLinkClass('/')}
+    >
+        Présentation
+    </nord-nav-item>
+    <nord-nav-item 
+        href="/install" 
+        icon="navigation-dashboard"
+        active={getLinkClass('/install')}
+    >
+        Installation
+    </nord-nav-item>
+    <nord-nav-group heading="Features">
+        <nord-nav-item 
+            href="/features/gherkin"
+            active={getLinkClass('/features/gherkin')}
+        >
+            Gherkin
+        </nord-nav-item>
+        <nord-nav-item 
+            href="/features/scenario"
+            active={getLinkClass('/features/scenario')}
+        >
+            Scenario
+        </nord-nav-item>
+        <nord-nav-item 
+            href="/features/scenario-outline"
+            active={getLinkClass('/features/scenario-outline')}
+        >
+            Scenario Outline
+        </nord-nav-item>
+        <nord-nav-item 
+            href="/features/background"
+            active={getLinkClass('/features/background')}
+        >
+            Background
+        </nord-nav-item>
+        <nord-nav-item 
+            href="/features/rule"
+            active={getLinkClass('/features/rule')}
+        >
+            Rule
+        </nord-nav-item>
+        <nord-nav-item 
+            href="/features/hooks"
+            active={getLinkClass('/features/hooks')}
+        >
+            Hooks
+        </nord-nav-item>
+        <nord-nav-item 
+            href="/features/gherkin-tags"
+            active={getLinkClass('/features/gherkin-tags')}
+        >
+            Gherkin tags
+        </nord-nav-item>
+        <nord-nav-item 
+            href="/features/sequentially-and-async"
+            active={getLinkClass('/features/sequentially-and-async')}
+        >
+            Async steps and sequentially
+        </nord-nav-item>
+        <nord-nav-item 
+            href="/features/step-expression"
+            active={getLinkClass('/features/step-expression')}
+        >
+            Steps with expressions
+        </nord-nav-item>
+        <nord-nav-item 
+            href="/features/doc-strings"
+            active={getLinkClass('/features/doc-strings')}
+        >
+            DocStrings
+        </nord-nav-item>
+    </nord-nav-group>
+    <nord-nav-group heading="Github">
+        <nord-nav-item 
+            href="https://github.com/amiceli/vitest-cucumber/issues/77"
+            icon="generic-github"
+        >
+            Upcoming
+        </nord-nav-item>
+    </nord-nav-group>
+    <div slot="footer" class="is--footer">
+        Website build with <a
+            href="https://astro.build/"
+            target="_blank">Astro</a
+        >,
+        <a
+            href="https://docs.astro.build/en/guides/integrations-guide/mdx/"
+            target="_blank">mdx</a
+        >
+        and <a href="https://picocss.com/" target="_blank">nord</a>
+        <i
+            class="lni lni-heart-fill"
+            style="color : var(--main-color); position : relative; top : 4px"
+        ></i>
+    </div>
+</nord-navigation>
