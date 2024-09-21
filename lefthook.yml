@@ -7,4 +7,4 @@ pre-commit:
 commit-msg:
   commands:
     lint-commit-msg:
-      run: npx commitlint --edit
+      run: docker run --platform linux/amd64 -v $PWD:/app --workdir /app commitlint/commitlint --edit "$1"
