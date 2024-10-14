@@ -10,16 +10,16 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^3.1.7",
-    "@nordhealth/components": "^3.18.0",
-    "@nordhealth/css": "^3.3.0",
-    "@nordhealth/themes": "^8.1.0",
-    "astro": "^4.15.8",
+    "@astrojs/mdx": "^3.1.8",
+    "@nordhealth/components": "^3.18.2",
+    "@nordhealth/css": "^3.3.1",
+    "@nordhealth/themes": "^8.1.1",
+    "astro": "^4.16.3",
     "lineicons": "^1.0.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.2",
-    "lefthook": "^1.7.15",
-    "sass": "^1.79.3"
+    "@biomejs/biome": "1.9.3",
+    "lefthook": "^1.7.18",
+    "sass": "^1.79.5"
   }
 }
