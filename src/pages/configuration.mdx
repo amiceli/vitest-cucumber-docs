@@ -1,0 +1,31 @@
+import Layout from '../layouts/Layout.astro';
+
+<Layout title="vitest-cucumber - install">
+	# Configuration
+
+    Since `3.9.0` vitest-cucumber allow to set global configuration.
+
+    Default vitest-cucumber configurations use `en` for language and `ignore` for excluded tags.
+
+    By example you can us eit in your vitest `setup` file : 
+
+    ~~~typescript
+    import { setVitestCucumberConfiguration } from '@amiceli/vitest-cucumber'
+
+    setVitestCucumberConfiguration({
+        language : 'fr', excludeTags : ['beta']
+    })
+    // or just excludeTags
+    setVitestCucumberConfiguration({
+        excludeTags : ['beta']
+    })
+    // or just language
+    setVitestCucumberConfiguration({
+        language : 'it'
+    })
+    ~~~
+
+    Now all `Scenario`, `Background` and `Rule` with `beta` or `ignore` tags will be excluded.
+</Layout>
+
+

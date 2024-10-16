@@ -25,6 +25,13 @@ function getLinkClass(pageUrl : string) : boolean {
     >
         Installation
     </nord-nav-item>
+    <nord-nav-item 
+        href="/configuration" 
+        icon="navigation-settings"
+        active={getLinkClass('/configuration')}
+    >
+        Configuration
+    </nord-nav-item>
     <nord-nav-group heading="Features">
         <nord-nav-item 
             href="/features/gherkin"
