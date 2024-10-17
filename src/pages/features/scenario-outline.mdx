@@ -1,12 +1,12 @@
 import Layout from '../../layouts/Layout.astro'
 
-<Layout title="vitest-cucumber">
+<Layout title="Scenario Outline">
 	# Scenario Outline
 
-    A `Scenario Outline` should have a `Examples`, otherwise **vitest-cucumbe**
-    will throw an error before run your unit tests.
+    A `Scenario Outline` should always have an `Examples` block, otherwise **vitest-cucumber**
+    will throw an error before running unit tests.
 
-    A `Scenario Outline` example : 
+    A `Scenario Outline` example:
 
     ~~~gherkin
     # example.feature
@@ -47,7 +47,7 @@ import Layout from '../../layouts/Layout.astro'
     When you run your tests, `ScenarioOutline` is runned X times.
     In this example, we have 3 value lines in `Examples`.
 
-    So it will be runned 3 times and `variables` contains each values : 
+    So it will be runned 3 times and `variables` contains each values:
 
     <nord-table>
     | | pull-request                          | approves         |
@@ -57,16 +57,17 @@ import Layout from '../../layouts/Layout.astro'
     | last run | `big commit`                            | `Requests changes` |
     </nord-table>
 
-    Currently `variables` is `any` type and each value is `string`.
+    Currently `variables` is of type `any` and each value is of type `string`.
 
-    If in your `Examples` you have values like `1`, `true`, `null` etc. There are `string` also.
+    If in your `Examples` you have values like `1`, `true`, `null`, etc...
+    They will always be interpreted as `string`.
 
     ## Validation
 
-    Before run tests **vitest-cucumber** check if : 
-    - `Scenario Outline` have `Examples`
+    Before running tests, **vitest-cucumber** checks if: 
+    - `Scenario Outline` have an `Examples` block
     - `Examples` have at least one line for values
-    - each `Examples` variable name is used at least one time in scenario step
+    - each `Examples` variable name is used at least one time in a scenario step
 
     ## Synonym
 

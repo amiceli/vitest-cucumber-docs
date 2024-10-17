@@ -1,11 +1,11 @@
 import Layout from '../../layouts/Layout.astro'
 
-<Layout title="DocStrings">
+<Layout title="DataTables">
     # Usage
 
     Since `v3.8.0` vitest-cucumber provides DataTables for steps.
 
-    Foe example :
+    Example:
 
     ~~~gherkin
     Feature: DataTables
@@ -17,7 +17,7 @@ import Layout from '../../layouts/Layout.astro'
             Then I stop coding
     ~~~
     
-    DataTables value is passed at last parmeters in your step callback : 
+    DataTables value is passed as the last parameter in your step callback: 
 
     ~~~typescript
     // optionnal
@@ -38,7 +38,7 @@ import Layout from '../../layouts/Layout.astro'
 
     ## DataTable & DocStrings & Step expression
 
-    You can use DataTable, DocStrings and step expression in same tests.
+    It is possible to use DataTable, DocStrings and step expressions all in the same tests.
 
     ~~~gherkin
     Feature: DocStrings & DataTables & Expression
@@ -55,7 +55,7 @@ import Layout from '../../layouts/Layout.astro'
             Then I follow arguments order
     ~~~
     
-    In your tests you'll have : 
+    In your tests you will see:
 
     ~~~typescript
     type GivenStepTables = { test: string }
@@ -69,10 +69,10 @@ import Layout from '../../layouts/Layout.astro'
                     text: string, // step expressions
                     hours: number, // step expressions
                     dataTables: GivenStepTables[],
-                    docStrings: string,
+                    description: string,
                 ) => {
                     expect(
-                        docStrings.includes(
+                        description.includes(
                             `DocStrings is passed to current Given`,
                         ),
                     ).toBe(true)

@@ -1,13 +1,13 @@
 import Layout from '../../layouts/Layout.astro'
 import {Code} from 'astro:components'
 
-<Layout title="vitest-cucumber">
+<Layout title="Hooks">
 	# Hooks
 
-    **vitest-cucumber** provide some hooks based on vitest hooks like `beforeAll`,
-    `afterAll` etc.
+    **vitest-cucumber** provides some hooks based on existing Vitest hooks like `beforeAll`,
+    `afterAll`, etc...
 
-    All hooks are optionnal.
+    All hooks are optional.
 
     ~~~typescript
     describeFeature(feature, ({ 
@@ -22,19 +22,19 @@ import {Code} from 'astro:components'
 
     ## BeforeAllScenarios
 
-    `BeforeAllScenarios` is run one time when `describeFeature` start. 
+    `BeforeAllScenarios` is run once when `describeFeature` is executed at the start. 
     It's like a `beforeAll`.
 
     ## AfterAllScenarios
 
-    `AfterAllScenarios` is like `afterAll`. It's called when all `Scenario` and/or `ScenarioOutline` are finished.
+    `AfterAllScenarios` is like `afterAll`. It is called when all `Scenario` and/or `ScenarioOutline` are finished.
 
     ## BeforeEachScenario
 
     `BeforeEachScenario` is like `beforeEach`.
-    It's called before each `Scenario` and/or `ScenarioOutline` from `rule` or `feature`.
+    It is called before each `Scenario` and/or `ScenarioOutline` from `rule` or `feature`.
 
-    But `BeforeEachScenario` isn't called after each `Background`.
+    But `BeforeEachScenario` is not called after each `Background`.
 
     `Background` can be considered like `BeforeEachScenario` but following Gherkin syntax with steps EventCounts.
 
@@ -42,7 +42,7 @@ import {Code} from 'astro:components'
 
     `AfterEachScenario` is like `afterEach` for each `Scenario` and/or `ScenarioOutline` from `rule` or `feature`.
 
-    `AfterEachScenario` isn't called after each `Background`. 
+    `AfterEachScenario` is not called after each `Background`. 
 
-    Is called before each `Scenario`  and/or `Scenario` + `Background` "couple".
+    Is called before each `Scenario` and/or `Scenario` + `Background` "couple".
 </Layout>

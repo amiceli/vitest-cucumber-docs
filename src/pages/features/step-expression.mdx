@@ -1,18 +1,18 @@
 import Layout from '../../layouts/Layout.astro'
 
-<Layout title="vitest-cucumber">
+<Layout title="Step expression">
     # Step expression
 
     Since `3.5.0` provides step expressions inspired by [cucumber-expression](https://github.com/cucumber/cucumber-expressions?tab=readme-ov-file#parameter-types).
 
-    vitest-cucumber provides : 
+    vitest-cucumber provides the following expressions:
 
     - `{string}` to match string between quotes or double quotes
     - `{number}` to match number with or without `$`
     - `{float}` to match number with dot like 3.2
     - `{list}` to match texte with comma like "Vue, Typescript, Astro"
 
-    Feature file example : 
+    Example:
 
     ~~~gherkin
     Feature: Background run before scenario tests
@@ -23,7 +23,7 @@ import Layout from '../../layouts/Layout.astro'
         And   I can't use React, Angular, Solid
     ~~~
 
-    In unit tests, values are passed after test context `ctx` : 
+    In unit tests, values are passed after test context `ctx`: 
 
     ~~~typescript
     describeFeature(feature, (f) => {
@@ -38,7 +38,7 @@ import Layout from '../../layouts/Layout.astro'
             s.And(`I use typescript for {number}`, (ctx: TaskContext, num: number) => {
                 expect(num).toEqual(2)
             })
-            s.And(`I can't use {list}`, (ctx : TaskContext, list : string[]) => {
+            s.And(`I can't use {list}`, (ctx : TaskContext, list: string[]) => {
                 expect(list.length).toEqual(3)
                 expect(list).toContain(`Angular`)
                 expect(list).toContain(`React`)

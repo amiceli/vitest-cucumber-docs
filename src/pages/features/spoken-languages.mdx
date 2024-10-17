@@ -1,26 +1,27 @@
 import Layout from '../../layouts/Layout.astro'
 
-<Layout title="DocStrings">
+<Layout title="Spoken languages">
     # Spoken languages
 
     Since [v3.7.0](https://github.com/amiceli/vitest-cucumber/releases/tag/v3.7.0)
-    vitest-cucumber allow to load feature files with different languages.
+    vitest-cucumber allows to load feature files with different languages.
 
-    You can see avalaible keywords and languages in [cucumber/gherkin](https://github.com/cucumber/gherkin/blob/1667cf8ed6920093ccf0ad1111bceb823ae43730/gherkin-languages.json) project.
+    You can see available keywords and languages in the [cucumber/gherkin](https://github.com/cucumber/gherkin/blob/1667cf8ed6920093ccf0ad1111bceb823ae43730/gherkin-languages.json) project.
 
     ## Load feature file
 
-    When you call `loadFeature` you can choose a language : 
+    When you call `loadFeature` you can choose a language:
 
     ~~~js
     await loadFeature(`../../lang.feature`, { language: 'fr' })
     ~~~
 
-    Default `language` is `en`, same if you choose an unavailable language.
+    The default `language` is english (`en`). 
+    It will also defaults to this language if you set a language that does not exist.
 
     ## Feature file example
 
-    An french feature file example : 
+    An french feature file example:
 
     ~~~gherkin
     Fonctionnalité: utiliser vitest-cucumber en français
@@ -30,7 +31,7 @@ import Layout from '../../layouts/Layout.astro'
             Alors vitest-cucumber lit mon scénario
     ~~~
 
-    If you mix languages, vitest-cucumber will throw en error, by example : 
+    If you mix languages, vitest-cucumber will throw en error, see: 
 
     ~~~gherkin
     Fonctionnalité: utiliser vitest-cucumber en français
@@ -42,5 +43,6 @@ import Layout from '../../layouts/Layout.astro'
 
     ## Run unit tests
 
-    `describeFeature` and other methods to run unit tests are same. You'll still use function like `Given`, `Background`, `Scenario` etc.
+    `describeFeature` and other methods to run unit tests are the same.
+    You still have to use functions like `Given`, `Background`, `Scenario`, etc...
 </Layout>

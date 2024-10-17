@@ -1,11 +1,9 @@
 import Layout from '../../layouts/Layout.astro'
 
-<Layout title="vitest-cucumber">
+<Layout title="Gherkin tags">
     # Ignore Rule / Scenario with Gherkin tags
 
-    `describeFeature` allow optionnal options to ignore `Scenario`, `Scenario Outline`, `Rule` according a tag.
-
-    Gherkin example : 
+    `describeFeature` allows optional options to ignore `Scenario`, `Scenario Outline`, `Rule` according to a tag.
 
     ~~~gherkin
     Feature: detect uncalled rules
@@ -24,12 +22,12 @@ import Layout from '../../layouts/Layout.astro'
                 Then  I am ignored
     ~~~
 
-    An example, ignore Rule with `@another-tag` : 
+    Here is an example to ignore the Rule by exluding the tag `@another-tag`: 
 
     ~~~typescript
-    describeFeature(feautre, () => {
+    describeFeature(feature, () => {
         // ...
-    }, { excludeTags : ['another-tag']}) // you can use many tags
+    }, { excludeTags : ['another-tag']}) // you can use as many tags as you want
     ~~~
 
     This will ignore `Rule` and its `Scenario` / `Scenario Outline`.

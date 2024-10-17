@@ -1,20 +1,19 @@
 import Layout from '../../layouts/Layout.astro'
 
-<Layout title="vitest-cucumber">
-    # For async and await
+<Layout title="Async/sequential steps">
+    # Async steps
 
     Steps can be asynchronous because they are executed sequentially.
-
     But `Scenario` and `ScenarioOutline` are not asynchronous.
 
-    Depending on what you need to do you can use scenario hooks. 
+    Depending on your needs, you can use scenario hooks. 
 
     ## Steps are run sequentially
 
-    Since v2.0.0 `vitest-cucumber` use `test.each` instead of `test`.
-    To follow Gherkin way, steps are tested one after one.
+    Since v2.0.0 `vitest-cucumber` uses `test.each` instead of `test`.
+    To follow the Gherkin convention, steps are tested one after one.
 
-    An example Scenario : 
+    An example Scenario:
 
     ~~~ts
     describeFeature(feature, ({ Scenario }) => {

@@ -1,12 +1,11 @@
 import Layout from '../../layouts/Layout.astro'
 
-<Layout title="vitest-cucumber">
+<Layout title="Rule">
     # Rule
 
-    **NB** : in your feature file. if you have `Scenario` / `Scenario Outline` not in rule.
-    They should de ordered before `Rule`.
+    **Note**: if you have `Scenario` / `Scenario Outline` in your feature file but not inside a rule, they should be ordered before `Rule`.
 
-    For example, if you write this : 
+    For example, if you write a feature like this: 
 
     ~~~gherkin
     Feature: Run tests with Rule
@@ -19,13 +18,12 @@ import Layout from '../../layouts/Layout.astro'
             Then  It know I come from a Feature
     ~~~
 
-    **vitest-cucumber** doesn't use indentation, is too complex for a little bring.
-
-    So In this case *I'm feature's scenario* `Scenario` is added to your Rule.
+    Be careful, **vitest-cucumber** does not use indentation.
+    So, in this case *I'm feature's scenario* `Scenario` is also executed within the `Rule`.
     
     ## Rule example
 
-    `Rule` is like a `Feature`, you can declare your scenarios and their steps.
+    `Rule` is like a `Feature`, you can declare the scenarios and their steps.
 
     ~~~javascript
     describeFeature(feature, ({Rule}) => {
@@ -48,6 +46,5 @@ import Layout from '../../layouts/Layout.astro'
     ## Hooks
 
     If you set hooks `BeforeEachScenario` and/or `AfterEachScenario` inside `describeFeature`.
-
     They will be used in your rule(s) scenario(s).
 </Layout>

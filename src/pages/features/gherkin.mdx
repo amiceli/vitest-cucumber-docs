@@ -3,15 +3,15 @@ import Layout from '../../layouts/Layout.astro'
 <Layout title="Gherkin">
 	# Gherkin validation
 
-    **vitest-cucumber** use its own feature file parser and validate it before 
-    run unit tests.
+    **vitest-cucumber** uses its own feature file parser and validate it before 
+    running unit tests.
 
-    And checl you test all scenario, steps etc.
+    And check ths tests for all scenario, steps, etc...
 
-    ## Before run unit tests
+    ## Before unit tests run
 
-    When you call `loadFeature`, **vitest-cucumber** parse and validate your *feature* file.
-    It implements [gherkin keywords](https://cucumber.io/docs/gherkin/reference/) : 
+    When you call `loadFeature`, **vitest-cucumber** parses and validates your *feature* file.
+    It implements [gherkin keywords](https://cucumber.io/docs/gherkin/reference/): 
     - `Scenario`
     - `Scenario Outline`
     - `Feature`
@@ -21,15 +21,17 @@ import Layout from '../../layouts/Layout.astro'
 
     Since **[3.3.2](https://github.com/amiceli/vitest-cucumber/releases/tag/v3.3.2)** version you can use `Example`, `Scenarios` and `Scenario Template` synonyms.
 
-    ### Valisation
+    ### Validation
 
-    When **vitest-cucumber** parse your *feature* file, it checks : 
+    When **vitest-cucumber** parses your *feature* file, it checks that:
     - You have an `Examples` in your `Scenario Outline`
     - You use `Examples` variables in your `Scenario Outline` steps
 
-    ## After unit tests
+    ## After unit tests run
 
-    After all unit tests **vitest-cucumber** checks :
+    ### Validation
+
+    After all unit tests **vitest-cucumber**, it checks:
     - non tested `Scenario` and/or `Scenario Outline`
     - non tested `Scenario` and/or `Scenario Outline` steps
     - non tested `Feature`
@@ -37,15 +39,15 @@ import Layout from '../../layouts/Layout.astro'
 
     ## Generate spec file from feature file
 
-    If you want to save time, **vitest-cucumber** can generate a spec file.
+    If you want to save time, **vitest-cucumber** is able to generate a spec file automatically via the CLI.
 
-    You can use it like this : 
+    You can use it like this:
 
     ~~~bash
     npx @amiceli/vitest-cucumber <path-to-feature> <path-to-spec>
     ~~~
 
-    An example : 
+    Example:
 
     ~~~bash
     npx @amiceli/vitest-cucumber features/example.feature src/__tests__/example.spec.ts

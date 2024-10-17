@@ -1,14 +1,14 @@
 import Layout from '../../layouts/Layout.astro'
 import {Code} from 'astro:components';
 
-<Layout title="vitest-cucumber">
+<Layout title="Background">
     # Background
 
     `Background` is available with [3.3.0](https://github.com/amiceli/vitest-cucumber/releases/tag/v3.3.0) version.
 
     ## Example
 
-    I'm still working on it but you can test it. It works like `Scenario` and it's available in `Rule` and/or `Feature.`
+    It works like `Scenario` and it's available in `Rule` and/or `Feature.`
 
     ~~~javascript filename="index.js"
     describeFeature(feature, ({Background, Scenario, Rule}) => {
@@ -36,13 +36,13 @@ import {Code} from 'astro:components';
 
     ### `Background` order
 
-    **vitest-cucumber** use vitest `describe.each` to run `Background` before `Scenario`/`ScenarioOutline`.
+    **vitest-cucumber** uses Vitest feature `describe.each` to run `Background` before `Scenario`/`ScenarioOutline`.
 
-    Example with a feature `Scenario` :
+    Example with a feature `Scenario`:
         - `Background`
         - `Scenario` *Simple scenario*
 
-    Example with a rule `Scenario` : 
+    Example with a rule `Scenario`: 
         - `Background`
         - `RuleBackground`
         - `Scenario` *Simple rule scenario*

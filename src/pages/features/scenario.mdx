@@ -5,7 +5,7 @@ import Layout from '../../layouts/Layout.astro'
 
     You can use `Scenario` in `Feature` and `Rule`.
 
-    A `Scenario` example : 
+    A `Scenario` example:
 
     ~~~gherkin
     # example.feature
@@ -38,9 +38,8 @@ import Layout from '../../layouts/Layout.astro'
 
     ## Task context
 
-    In each step like `Given`, `Then` etc you can use vitest [TaskContext](https://vitest.dev/guide/test-context.html#built-in-test-context).
-    <br />
-    For example : 
+    In each step (`Given`, `Then`, etc...), you can access and use the Vitest [TaskContext](https://vitest.dev/guide/test-context.html#built-in-test-context).
+    For example:
 
     ~~~typescript
     Given('Developer using feature file', (ctx) => { 
@@ -52,10 +51,10 @@ import Layout from '../../layouts/Layout.astro'
     ## Validation
 
     vitest-cucumber will check:
-    - correct scenario name
-    - correct steps name
-    - scenario is called
-    - scenario steps are called
+    - correct scenario names
+    - correct step names
+    - scenario is effectively called
+    - scenario steps are effectively called
 
     ## Synonym
 
