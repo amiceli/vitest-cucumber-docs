@@ -69,10 +69,10 @@ import Layout from '../../layouts/Layout.astro'
                     text: string, // step expressions
                     hours: number, // step expressions
                     dataTables: GivenStepTables[],
-                    description: string,
+                    docStrings: string,
                 ) => {
                     expect(
-                        description.includes(
+                        docStrings.includes(
                             `DocStrings is passed to current Given`,
                         ),
                     ).toBe(true)

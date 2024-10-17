@@ -9,7 +9,7 @@ function getLinkClass(pageUrl: string): boolean {
 <nord-navigation slot="nav">
     <div slot="header">
         <header>
-            <a href="/" class="header-link">
+            <a href="/" class="header__link">
                 <img src="/logo.png" />
                 <span>vitest-cucumber</span>
             </a>
@@ -141,10 +141,10 @@ function getLinkClass(pageUrl: string): boolean {
 <style lang="scss" scoped>
     header {
         display: flex;
-        justify-content: center;
         align-items: center;
+        margin-left: 20px;
 
-        .header-link {
+        .header__link {
             text-decoration: none;
             color: white;
             font-weight: bold;
