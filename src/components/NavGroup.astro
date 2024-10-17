@@ -1,8 +1,8 @@
 ---
-const url = Astro.url
+const url = Astro.url;
 
-function getLinkClass(pageUrl : string) : boolean {
-	return url.pathname.replaceAll('/', '') === pageUrl.replaceAll('/', '')
+function getLinkClass(pageUrl: string): boolean {
+	return url.pathname.replaceAll("/", "") === pageUrl.replaceAll("/", "");
 }
 ---
 
@@ -115,7 +115,8 @@ function getLinkClass(pageUrl : string) : boolean {
         </nord-nav-item>
     </nord-nav-group>
     <div slot="footer" class="is--footer">
-        Website build with <a
+        <span>Built with</span>
+        <a
             href="https://astro.build/"
             target="_blank">Astro</a
         >,
@@ -123,7 +124,8 @@ function getLinkClass(pageUrl : string) : boolean {
             href="https://docs.astro.build/en/guides/integrations-guide/mdx/"
             target="_blank">mdx</a
         >
-        and <a href="https://picocss.com/" target="_blank">nord</a>
+        &
+        <a href="https://picocss.com/" target="_blank">nord</a>
         <i
             class="lni lni-heart-fill"
             style="color : var(--main-color); position : relative; top : 4px"

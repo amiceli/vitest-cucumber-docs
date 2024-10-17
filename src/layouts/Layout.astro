@@ -1,11 +1,11 @@
 ---
 import PackageDetails from "../components/PackageDetails.astro";
 import "lineicons/web-font/lineicons.css";
-import NavGroup from '../components/NavGroup.astro'
+import NavGroup from "../components/NavGroup.astro";
 
 interface Props {
-    title: string;
-    hideMenu?: boolean;
+	title: string;
+	hideMenu?: boolean;
 }
 
 const { title } = Astro.props;
@@ -101,7 +101,9 @@ const { title } = Astro.props;
     }
 
     .is--footer {
+        background: var(--n-color-accent-secondary);
         text-align: center;
+        padding: 8px;
     }
 
     .astro-code:not(.without--padding) {
