@@ -37,9 +37,7 @@ const { title } = Astro.props;
                 </div>
             </nord-header>
             <nord-stack
-                direction="horizontal"
-                justify-content="center"
-                align-items="center"
+                direction="vertical"
                 gap="l"
             >
                 <div>
@@ -90,7 +88,7 @@ const { title } = Astro.props;
     }
 
     pre {
-        width: 100%;
+        width: fit-content;
     }
 
     .is--footer {
@@ -107,6 +105,11 @@ const { title } = Astro.props;
     }
     h1, h2, h3 {
         color : #25D96C;
+    }
+    nord-stack {
+        h1 {
+            margin-top: -10px; // 💡 cannot style the <main> element as it is in the shadow-dom
+        }
     }
 </style>
 
