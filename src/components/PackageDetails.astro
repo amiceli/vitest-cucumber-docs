@@ -9,16 +9,18 @@ const { version } = json;
 const releaseUrl = `https://github.com/amiceli/vitest-cucumber/releases/tag/v${version}`;
 ---
 
-<div class="Package-details">
-    <i class="lni lni-npm"></i>
+<div class="package-details">
     <a href={releaseUrl} target="_blank">
-        <b>{version}</b>
+        <i class="lni lni-npm"></i>
+        <span class="version">{version}</span>
     </a>
 </div>
 
 <style lang="scss" scoped>
-    .Package-details {
-        display: inline-block;
+    .package-details {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         a {
             text-decoration: none;
@@ -28,8 +30,11 @@ const releaseUrl = `https://github.com/amiceli/vitest-cucumber/releases/tag/v${v
             font-size: 40px;
             vertical-align: middle;
             margin-right: 5px;
-            position: relative;
-            top: -4px;
+            color: white;
+        }
+
+        .version {
+            font-weight: bold;
         }
     }
 </style>
