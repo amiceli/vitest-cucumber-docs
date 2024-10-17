@@ -8,8 +8,12 @@ function getLinkClass(pageUrl: string): boolean {
 
 <nord-navigation slot="nav">
     <div slot="header">
-        <img src="/logo.png" />
-        vitest-cucumber
+        <header>
+            <a href="/" class="header-link">
+                <img src="/logo.png" />
+                <span>vitest-cucumber</span>
+            </a>
+        </header>
     </div>
     <nord-nav-item 
         href="/" 
@@ -132,3 +136,24 @@ function getLinkClass(pageUrl: string): boolean {
         ></i>
     </div>
 </nord-navigation>
+
+<style lang="scss" scoped>
+    header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .header-link {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            
+            img {
+                width: 28px;
+                vertical-align: middle;
+                margin-right: 8px;
+            }
+        }
+    }
+</style>
