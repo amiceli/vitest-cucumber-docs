@@ -31,4 +31,24 @@ import Layout from '../../layouts/Layout.astro'
     ~~~
 
     This will ignore `Rule` and its `Scenario` / `Scenario Outline`.
+
+    ## Nesting tags filtering
+
+    Since `3.10.0` vitest-cucumber allows to use nested tags with `includeTags`, `excludeTags` in `describeFeature` or [configuration](/configuration).
+
+    Example:
+
+    ~~~typescript
+    describeFeature(feature, () => {
+        // ...
+    }, { 
+        excludeTags : [
+            ["alpha", "beta"], 
+            "vitests", 
+            "another"
+        ]
+    })
+    ~~~
+
+    It will exclude `Rule`, `Scenario` etc with (`@alpha` and `@beta`) tags or `@vitests` or `@another` tag.
 </Layout>
