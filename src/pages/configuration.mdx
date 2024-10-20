@@ -28,6 +28,24 @@ import Layout from '../layouts/Layout.astro';
     ~~~
 
     Now all `Scenario`, `Background` and `Rule` with `beta` or `ignore` tags will be excluded.
+
+    ## `onStepError`
+
+    Since `3.11.0` version, vitest-cucumber provides `onStepError` configuration option.
+
+    `onStepError` is passed as callback to [onTestFailed](https://vitest.dev/api/#ontestfailed) when step failed.
+
+    Example:
+
+    ~~~typescript
+    setVitestCucumberConfiguration({ 
+        onStepError ({ error, ctx, step}) {
+            // error : first error caught by onTestFailed
+            // ctx : TaskContext
+            // step : current failed step
+            console.error(step.details)
+            screen.logTestingPlayground()
+        }
+    })
+    ~~~
 </Layout>
-
-
