@@ -29,6 +29,7 @@ const { title } = Astro.props
         <nord-layout>
             <NavGroup />
             <nord-header slot="header">
+                {/* TODO : to replace by a search bar on desktop */}
                 <h1 class="n-typescale-l">
                     {title}
                 </h1>
@@ -109,10 +110,12 @@ const { title } = Astro.props
         color : #25D96C;
     }
     nord-stack {
-        padding-left: 40px;
+        @media screen and (min-width: 1200px) {
+            padding-left: 40px;
+        }
 
         h1 {
-            margin-top: -10px; // 💡 cannot style the <main> element as it is in the shadow-dom
+            margin-top: 0;
         }
     }
 </style>
@@ -120,6 +123,12 @@ const { title } = Astro.props
 <style lang="scss" scoped>
     .container:first-of-type {
         margin-top: 100px;
+    }
+
+    h1 {
+        @media screen and (min-width: 1200px) {
+            display: none;
+        }
     }
 
     .for--grid {
