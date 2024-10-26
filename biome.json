@@ -4,7 +4,14 @@
         "enabled": true
     },
     "files": {
-        "ignore": ["package.json", "package-lock.json", "dist", ".vscode/"]
+        "ignore": [
+            "package.json",
+            "package-lock.json",
+            "dist",
+            ".vscode/",
+            "examples",
+            ".astro"
+        ]
     },
     "linter": {
         "enabled": true,

@@ -1,6 +1,6 @@
-import { defineConfig } from "astro/config"
-import pagefind from "astro-pagefind"
 import mdx from "@astrojs/mdx"
+import pagefind from "astro-pagefind"
+import { defineConfig } from "astro/config"
 
 export default defineConfig({
     integrations: [mdx(), pagefind()],
