@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
+    "astro-pagefind": "^1.6.0",
     "lefthook": "^1.8.1",
     "sass": "^1.80.4"
   }
