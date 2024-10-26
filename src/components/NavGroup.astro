@@ -16,27 +16,34 @@ function getLinkClass(pageUrl: string): boolean {
         </header>
     </div>
     <nord-nav-item 
-        href="/" 
-        icon="file-script"
-        active={getLinkClass('/')}
-    >
-        Presentation
-    </nord-nav-item>
-    <nord-nav-item 
-        href="/install" 
-        icon="navigation-dashboard"
-        active={getLinkClass('/install')}
-    >
-        Installation
-    </nord-nav-item>
-    <nord-nav-item 
-        href="/configuration" 
-        icon="navigation-settings"
-        active={getLinkClass('/configuration')}
-        style="margin-bottom: 30px;"
-    >
-        Configuration
-    </nord-nav-item>
+        aria-describedby="search" 
+        icon="navigation-search"
+        id="forSearch"
+    >Search (⌘+K)</nord-nav-item>
+    <nord-nav-group heading="vitest-cucumber">
+        <nord-nav-item
+            href="/"
+            icon="file-script"
+            active={getLinkClass('/')}
+        >
+            Presentation
+        </nord-nav-item>
+        <nord-nav-item
+            href="/install"
+            icon="navigation-dashboard"
+            active={getLinkClass('/install')}
+        >
+            Installation
+        </nord-nav-item>
+        <nord-nav-item
+            href="/configuration"
+            icon="navigation-settings"
+            active={getLinkClass('/configuration')}
+            style="margin-bottom: 30px;"
+        >
+            Configuration
+        </nord-nav-item>
+    </nord-nav-group>
     <nord-nav-group heading="Features">
         <nord-nav-item 
             href="/features/gherkin"
@@ -137,6 +144,12 @@ function getLinkClass(pageUrl: string): boolean {
         ></i>
     </div>
 </nord-navigation>
+
+<script>
+    document.getElementById('forSearch').addEventListener('click', () => {
+        document.getElementById('forMenu').setAttribute('open', 'true')
+    })
+</script>
 
 <style lang="scss" scoped>
     header {
