@@ -1,14 +1,14 @@
 ---
-import PackageDetails from "../components/PackageDetails.astro"
-import "lineicons/web-font/lineicons.css"
-import NavGroup from "../components/NavGroup.astro"
+import PackageDetails from "../components/PackageDetails.astro";
+import "lineicons/web-font/lineicons.css";
+import NavGroup from "../components/NavGroup.astro";
 
 interface Props {
-    title: string
-    hideMenu?: boolean
+    title: string;
+    hideMenu?: boolean;
 }
 
-const { title } = Astro.props
+const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -29,7 +29,6 @@ const { title } = Astro.props
         <nord-layout>
             <NavGroup />
             <nord-header slot="header">
-                {/* TODO : to replace by a search bar on desktop */}
                 <h1 class="n-typescale-l">
                     {title}
                 </h1>
@@ -37,10 +36,7 @@ const { title } = Astro.props
                     <PackageDetails />
                 </div>
             </nord-header>
-            <nord-stack
-                direction="vertical"
-                gap="l"
-            >
+            <nord-stack direction="vertical" gap="l">
                 <nord-command-menu id="forMenu"></nord-command-menu>
                 <div>
                     <slot />
@@ -50,16 +46,52 @@ const { title } = Astro.props
     </body>
 </html>
 
-<script 
-    defer 
-    src="https://plausible.volpe.xyz/script.js" 
+<script
+    defer
+    src="https://plausible.volpe.xyz/script.js"
     data-website-id="5e2eb5c2-a935-4df2-b9fb-9ad82dd0ec8a"
     data-domains="vitest-cucumber.miceli.click"
-    is:inline
-></script>
+    is:inline></script>
 
 <script>
     import "@nordhealth/components/lib/index";
+</script>
+
+<script defer>
+    let pagefind;
+    let searchValue = "";
+    const forMenu = document.querySelector("#forMenu");
+
+    document.querySelector("#forMenu").addEventListener("focus", async (e) => {
+        if (!pagefind) {
+            pagefind = await import("/pagefind/pagefind.js");
+            pagefind.init();
+        }
+    });
+    forMenu.addEventListener("input", async (e) => {
+        searchValue += e.data;
+        forMenu.commands = [];
+
+        const results = await (await pagefind.search(searchValue)).results;
+        const commands = [];
+
+        for await (const result of results) {
+            const data = await result.data();
+
+            for (const t of data.sub_results) {
+                commands.push({
+                    title: t.title,
+                    section: data.meta.title,
+                    handler: () => {
+                        window.open(t.url, "_blank");
+                        forMenu.removeAttribute("open");
+                    },
+                });
+            }
+        }
+
+        forMenu.commands = commands;
+    });
 </script>
 
 <style lang="scss" is:global>
@@ -105,10 +137,12 @@ const { title } = Astro.props
         padding: 24px;
     }
     code {
-        color : #D2A8FF;
+        color: #d2a8ff;
     }
-    h1, h2, h3 {
-        color : #25D96C;
+    h1,
+    h2,
+    h3 {
+        color: #25d96c;
     }
     nord-stack {
         @media screen and (min-width: 1200px) {
