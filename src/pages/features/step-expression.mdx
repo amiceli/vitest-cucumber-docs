@@ -118,6 +118,25 @@ import Layout from '../../layouts/Layout.astro'
 
     ### `{date}` <nord-badge variant="info">v4.0.0</nord-badge>
 
+    Match text according supported formats and return a `Date`.
+
+    ~~~gherkin
+    Given It's 10/25/24
+    ~~~
+
+    ~~~typescript
+    Given("It's {date}", (ctx : d: Date) => {
+        expect(d.getMonth()).toEqual(9)
+    })
+    ~~~
+
+    Supported formats :
+
+    - `MM/DD/YYYY`
+    - `YYYY-MM-DD`
+    - `YYYY-MM-DD`
+    - `MM/DD/YYYY HH:MM:SS`
+
     ### `{char}` <nord-badge variant="info">v4.0.0</nord-badge>
 
     Match any character in step title.
@@ -134,6 +153,21 @@ import Layout from '../../layouts/Layout.astro'
     ~~~
 
     ### `{int}` <nord-badge variant="info">v4.0.0</nord-badge>
+
+    Match text and return `number` only for integer. Use `{number}` for float.
+
+    ~~~gherkin
+    Given I use Vue 3
+    And   I use Storybook 8.2
+    ~~~
+
+    ~~~typescript
+    Given("I use Vue {int}", (ctx : version: number) => {
+        expect(version).toBe(3)
+    })
+    // And will failed
+    And("I use Storybook {int}", () => {})
+    ~~~
 
     ### `{word}` <nord-badge variant="info">v4.0.0</nord-badge>
 
