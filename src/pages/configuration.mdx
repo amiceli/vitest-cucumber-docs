@@ -48,4 +48,31 @@ import Layout from '../layouts/Layout.astro';
         }
     })
     ~~~
+
+    ## tags
+
+    Example configuration : 
+
+    ~~~typescript
+    setVitestCucumberConfiguration({
+        excludeTags: ['beta'] // Array<string | string[]>
+        includedTags: [] // Array<string | string[]>
+    })
+    ~~~
+
+    `includedTags` will set which scenario / rule / background to run.
+
+    `excludeTags` will ignore matching scenario / rule / background using `describe.skip`.
+
+    By default `excludeTags` contains `ignore` tags.
+
+    You can use [nesting tags filtering](/features/gherkin-tags).
+
+    ## env variables
+
+    Since `v4.2.0` vitest-cucumber handles env variable for excluded and included tags : 
+
+    - `VITEST_INCLUDE_TAGS` : will set `includedTags` in global options
+    - `VITEST_EXCLUDE_TAGS` : will set `excludedTags` in global options
+
 </Layout>
