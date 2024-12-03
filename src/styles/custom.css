@@ -1,0 +1,9 @@
+:root {
+    --sl-content-width: 50rem;
+    --sl-text-5xl: 3.5rem;
+    /* --sl-color-white: red; */
+}
+
+.main-pane h1 {
+    color: #FCC72B;
+}
