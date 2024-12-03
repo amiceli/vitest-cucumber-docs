@@ -1,9 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600&display=swap');
+
 :root {
     --sl-content-width: 50rem;
     --sl-text-5xl: 3.5rem;
-    /* --sl-color-white: red; */
+}
+
+main {
+    font-family: 'Exo 2', sans-serif;
 }
 
 .main-pane h1 {
-    color: #fcc72b;
+    color: #25D96C;
+}
+
+.main-pane .hero > img {
+    width: 200px;
 }
