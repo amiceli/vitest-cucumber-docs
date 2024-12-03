@@ -5,6 +5,9 @@ export default defineConfig({
     integrations: [
         starlight({
             title: "vitest-cucumber",
+            logo: {
+                src: "src/assets/logo.png",
+            },
             social: {
                 github: "https://github.com/amiceli/vitest-cucumber",
             },
@@ -90,6 +93,7 @@ export default defineConfig({
                     ],
                 },
             ],
+            customCss: ["./src/styles/custom.css"],
         }),
     ],
     devToolbar: {
