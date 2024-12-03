@@ -1,0 +1,91 @@
+---
+title: Data Tables
+description: vitest-cucumber goals
+---
+
+# Usage
+
+Since `v3.8.0` vitest-cucumber provides DataTables for steps.
+
+Example:
+
+~~~gherkin
+Feature: DataTables
+    Scenario: DataTables is a game
+        Given I have a good game
+            | name      | editor   |
+            | GTA       | Rockstar |
+            | AC Mirage | Ubisoft  |
+        Then I stop coding
+~~~
+
+DataTables value is passed as the last parameter in your step callback: 
+
+~~~typescript
+// optional
+type GameDataTables = { name : string, editor : string }
+
+describeFeature(feature, (f) => {
+    f.Scenario(`DataTables is a game`, (s) => {
+        // by default dataTables is typed unknow[]
+        s.Given(`I have a good game`, (ctx, dataTables: GameDataTables[]) => {
+            expect(dataTables[0]).toEqual({
+                name : 'GTA', editor : 'Rockstar'
+            })
+        })
+        s.Then(`I use vitest`, (ctx) => {})
+    })
+})
+~~~
+
+## DataTable & DocStrings & Step expression
+
+It is possible to use DataTable, DocStrings and step expressions all in the same tests.
+
+~~~gherkin
+Feature: DocStrings & DataTables & Expression
+    Scenario: Step arguments order
+        Given I use "DocStrings" and DataTables
+            """
+            DocStrings is passed to current Given
+            And at last params
+            After ctx : TaskContext
+            """
+            | test |
+            | one  |
+            | two  |
+        Then I follow arguments order
+~~~
+
+In your tests you will see:
+
+~~~typescript
+type GivenStepTables = { test: string }
+
+describeFeature(feature, (f) => {
+    f.Scenario('Step arguments order', (s) => {
+        s.Given(
+            `I use {string} {number} hours`,
+            (
+                ctx,
+                text: string, // step expressions
+                hours: number, // step expressions
+                dataTables: GivenStepTables[],
+                docStrings: string,
+            ) => {
+                expect(
+                    docStrings.includes(
+                        `DocStrings is passed to current Given`,
+                    ),
+                ).toBe(true)
+                expect(text).toEqual(`DocStrings`)
+                expect(hours).toBe(2)
+                expect(dataTables.length).toBe(2)
+                expect(dataTables[0].test).toBe('one')
+                expect(dataTables[1].test).toBe('two')
+            },
+        )
+        s.Then("I follow arguments order", () => {})
+    })
+})
+~~~

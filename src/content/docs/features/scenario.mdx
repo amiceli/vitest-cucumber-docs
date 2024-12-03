@@ -1,0 +1,63 @@
+---
+title: Scenario
+description: vitest-cucumber goals
+---
+
+# Scenario
+
+You can use `Scenario` in `Feature` and `Rule`.
+
+A `Scenario` example:
+
+~~~gherkin
+# example.feature
+Feature: Improve my unit tests
+    Scenario: Use vitest-cucumber in my unit tests
+        Given Developer using feature file
+        And   Using vitest-cucumber
+        When  I run my unit tests
+        Then  I know if I forgot a scenario
+~~~
+
+## Run `Scenario Outline` tests
+
+~~~typescript
+import { loadFeature, describeFeature } from '@amiceli/vitest-cucumber'
+import { expect } from 'vitest'
+
+const feature = await loadFeature('path/to/my/file.feature')
+
+describeFeature(feature, ({ Scenario }) => {
+    Scenario('Use vitest-cucumber in my unit tests', ({ Given, When, Then, And }) => {
+        Given('Developer using feature file', () => {})
+        And('sing vitest-cucumber', () => {})
+        When('I run my unit tests', () => {})
+        Then('I know if I forgot a scenario', () => {})
+    })
+
+})
+~~~
+
+## Task context
+
+In each step (`Given`, `Then`, etc.), you can access and use the Vitest [TaskContext](https://vitest.dev/guide/test-context.html#built-in-test-context).
+For example:
+
+~~~typescript
+Given('Developer using feature file', (ctx) => { 
+    console.log(ctx.task.name)
+    ctx.skip()
+})
+~~~
+
+## Validation
+
+vitest-cucumber will check:
+- correct scenario names
+- correct step names
+- scenario is effectively called
+- scenario steps are effectively called
+
+## Synonym
+
+Same thing if you use `Example`.
