@@ -94,6 +94,18 @@ export default defineConfig({
                 },
             ],
             customCss: ["./src/styles/custom.css"],
+            head: [
+                {
+                    tag: "script",
+                    attrs: {
+                        src: "https://plausible.volpe.xyz/script.js",
+                        "data-website-id":
+                            "5e2eb5c2-a935-4df2-b9fb-9ad82dd0ec8a",
+                        "data-domains": "vitest-cucumber.miceli.click",
+                        defer: true,
+                    },
+                },
+            ],
         }),
     ],
     devToolbar: {
