@@ -1,0 +1,87 @@
+---
+title: Skip / Only
+description: use skip and/or only on scenario
+---
+
+Since 4.4.0 **vitest-cucumber** provides `.skip` and `.only` for Scenario, Rule and Background.s
+
+Functions like `Scenario.skip` or `Rule.only` use vitest `skip` and `only`, so you can 
+check [vitest api](https://vitest.dev/api/#describe-only) if you need more details.
+
+## skip
+
+Like `describe.skip`, vitest-cucumber provides : 
+- `Scenario.skip` and `ScenarioOutline.skip`
+- `RuleScenario.skip` and `RuleScenarioOutline.skip`
+- `Background.skip`
+- `Rule.skip`
+
+Example with a scenario : 
+
+```typescript
+describeFeature(feature, (f) => {
+    f.Scenario.skip('Will be skipped', (s) => {
+        s.Given('I am uncalled', () => {
+            expect.fail('should be skipped')
+        })
+    })
+    f.Scenario('Only called scenario', (s) => {
+        s.Given('I use only', () => {
+            expect(true).toBe(true)
+        })
+    })
+})
+```
+
+Example with a rule :
+
+```typescript
+describeFeature(feature, (f) => {
+    f.Rule.skip('skipped rule', (r) => {
+        r.RuleScenario('skipped rule\'s scenario', (s) => {
+            s.Given('I\'m skipped too', () => {
+                expect.fail('should be skipped')
+            })
+        })
+    })
+})
+```
+
+## only
+
+Like `describe.only`, vitest-cucumber provides : 
+- `Scenario.only` and `ScenarioOutline.only`
+- `RuleScenario.only` and `RuleScenarioOutline.only`
+- `Rule.only`
+
+A `Background` is always linked to `Scenario`, so you can't call `Background.only`.
+
+Example with a scenario : 
+
+```typescript
+describeFeature(feature, (f) => {
+    f.Scenario('Will be skipped', (s) => {
+        s.Given('I am uncalled', () => {
+            expect.fail('should be skipped')
+        })
+    })
+    f.Scenario.only('Only called scenario', (s) => {
+        s.Given('I use only', () => {
+            expect(true).toBe(true)
+        })
+    })
+})
+```
+
+Example with a rule :
+
+```typescript
+describeFeature(feature, (f) => {
+    f.Rule.only('Only called rule', (r) => {
+        // ...
+    })
+    f.Rule('Skipped rule', (r) => {
+        // ...
+    })
+})
+```

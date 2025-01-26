@@ -70,6 +70,10 @@ export default defineConfig({
                             slug: "features/hooks",
                         },
                         {
+                            label: "skip / only",
+                            slug: "features/skip-only",
+                        },
+                        {
                             label: "Tags",
                             slug: "features/gherkin-tags",
                         },
