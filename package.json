@@ -19,7 +19,7 @@
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
     "astro-pagefind": "^1.6.0",
-    "lefthook": "^1.10.1",
-    "sass": "^1.81.0"
+    "lefthook": "^1.10.10",
+    "sass": "^1.83.4"
   }
 }
