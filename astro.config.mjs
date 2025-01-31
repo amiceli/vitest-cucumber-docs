@@ -70,6 +70,10 @@ export default defineConfig({
                             slug: "features/hooks",
                         },
                         {
+                            label: "Structure context",
+                            slug: "features/structure-context",
+                        },
+                        {
                             label: "skip / only",
                             slug: "features/skip-only",
                         },
