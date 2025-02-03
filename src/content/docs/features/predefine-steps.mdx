@@ -1,0 +1,196 @@
+---
+title: Predefine steps
+description: define steps globally or in feature/rule
+---
+
+Since `4.6.0` **vitest-cucumber** allowes to define step globally, useful
+for scenario / background with same steps.
+
+Gherkin examples :
+
+```gherkin
+Feature: use predefined steps in unit tests
+    Background:
+        Given I've scenarii with same steps
+        And   I use Rule and Feature
+    Scenario: scenario with docStrings
+        Given I use docStrings
+        """
+        I love DocStrings
+        """
+        When  I run unit tests
+        Then  I can use it
+    Rule: predefined steps in rule
+        Scenario: scenario without docStrings
+            Given I don't use docStrings
+            When  I run unit tests
+            Then  I use scenario context
+```
+
+## Intro
+
+In all examples with `defineSteps`, you can define 
+all step types: `Given`, `When`, `Then`, `And` and `But`.
+
+Currently you can define a step never used in scenario, **vitest-cucumber** 
+doesn't throw an error.
+
+**vitest-cucumber** still throw an error if steps are missing in scenario and background.
+
+## Define steps globally
+
+You can define globally, by example in `vitest.setup.ts`:
+
+```typescript
+import { defineSteps } from "@amiceli/vitest-cucumber"
+
+defineSteps(({ When }) => {
+    When('I run unit tests', () => {})
+})
+```
+
+## define steps in Feature
+
+You also can define steps only for a feature :
+
+```typescript
+import { defineSteps, loadFeature, describeFeature } from "@amiceli/vitest-cucumber"
+
+const feature = await loadFeature('feature/example.feature')
+
+describeFeature(feature, (f) => {
+    f.defineSteps(({ And }) => {
+        And('I use Rule and Feature', () => {
+            expect(f.context.init).toBe(true)
+        })
+        Given('I use docStrings', (ctx, docStrings: string) => {
+            // you can access on docStrings in predefined steps
+            expect(docStrings).toEqual('I love DocStrings')
+        })
+    })
+    f.Background((b) => {
+        b.Given("I've scenarii with same steps", () => {
+            f.context.init = true
+        })
+    })
+    // other steps, scenario, etc
+})
+```
+
+## define steps in Rule
+
+To finish you can define steps for a rule :
+
+```typescript
+import { defineSteps, loadFeature, describeFeature } from "@amiceli/vitest-cucumber"
+
+const feature = await loadFeature('feature/example.feature')
+
+defineSteps(({ When }) => {
+    When('I run unit tests', () => {})
+})
+
+describeFeature(feature, (f) => {
+    f.Rule('predefined steps in rule', (r) => {
+        r.defineSteps(({ Given }) => {
+            Given("I don't use docStrings"), () => {
+                r.context.initRule = true
+            }
+        })
+        r.Scenario("scenario without docStrings", (s) => {
+            s.Then("I use scenario context", () => {
+                expect(s.context).toEqual({})
+                expect(r.context.initRule).toBe(true)
+            })
+        })
+    })
+    // other steps, scenario, etc
+})
+```
+
+## Steps order
+
+If you define same step in different scope, it will be overrided :
+
+```typescript
+import { defineSteps, loadFeature, describeFeature } from "@amiceli/vitest-cucumber"
+
+const feature = await loadFeature('feature/example.feature')
+
+defineSteps(({ When }) => {
+    When('I run unit tests', () => {})
+})
+
+describeFeature(feature, (f) => {
+    f.defineSteps(({ When, Given }) => {
+        When('I run unit tests', () => {
+            // Will override globally defined step
+        })
+        Given("I don't use docStrings"), () => {})
+    })
+    f.Rule('predefined steps in rule', (r) => {
+        r.defineSteps(({ Given, Then }) => {
+            Given("I don't use docStrings"), () => {
+                // Will override globally defined in feature
+            }
+            Then("I use scenario context", () => {})
+        })
+        r.Scenario("scenario without docStrings", (s) => {
+            s.Then("I use scenario context", () => {
+                // Will override globally defined in rule
+                expect(s.context).toEqual({})
+                expect(r.context.initRule).toBe(true)
+            })
+        })
+    })
+})
+```
+
+So we can define a *formula* for `defineSteps` : *global < feature < rule < scenario*.
+
+## Order
+
+With this feature **vitest-cucumber** provides steps order.
+No matter in wish order you define steps with `defineSteps` and/or-only in `Scenario`.
+
+It will follow order in your feature file :
+
+```gherkin
+Feature: use predefined steps in unit tests
+    Background:
+        Given I've scenarii with same steps
+        And   I use Rule and Feature
+```
+
+You can do:
+
+```typescript
+f.Background((b) => {
+    // same in all defineSteps functions
+    b.And("I use Rule and Feature", () => {
+        expect(b.context.init).toBe(true)
+    })
+    b.Given("I've scenarii with same steps", () => {
+        b.context.init = true
+    })
+})
+```
+
+## Limits
+
+#### Context 
+
+They are some limits with [`context`](https://vitest-cucumber.miceli.click/features/structure-context) :
+- in globally defined steps you can't access to `Feature`, `Rule` and `Scenario` context
+- in feature defined steps same for `Rule` and `Scenario` context
+- in rule defined step you can't access to `Scenario` context
+
+#### Step expression
+
+In `defineSteps`, currently you can't define step with expression like : 
+
+```typescript
+Given('I use {string} framework', () => {})
+```
+
+I'm checking if I can't fix this ;).

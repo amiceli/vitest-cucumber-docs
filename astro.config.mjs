@@ -70,8 +70,14 @@ export default defineConfig({
                             slug: "features/hooks",
                         },
                         {
+                            label: "Predefine steps",
+                            slug: "features/predefine-steps",
+                            badge: "New",
+                        },
+                        {
                             label: "Structure context",
                             slug: "features/structure-context",
+                            badge: "New",
                         },
                         {
                             label: "skip / only",
