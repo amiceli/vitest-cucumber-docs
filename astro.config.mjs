@@ -55,7 +55,17 @@ export default defineConfig({
                         },
                         {
                             label: "Scenario Outline",
-                            slug: "features/scenario-outline",
+                            items: [
+                                {
+                                    label: "Use Scenario Outline",
+                                    slug: "features/scenario-outline",
+                                },
+                                {
+                                    label: "Mapped examples",
+                                    slug: "features/mapped-examples",
+                                    badge: "New",
+                                },
+                            ],
                         },
                         {
                             label: "Background",

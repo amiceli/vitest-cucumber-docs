@@ -1,0 +1,64 @@
+---
+title: Mapped examples
+description: mapped examples values with Gherkin
+---
+
+**vitest-cucumber** provides mapped examples value, it's useful 
+in unit tests.
+
+Example :
+
+~~~gherkin
+# example.feature
+Feature: Use mapped examples
+    Scenario Outline: Delete action
+        Given I am user with <permission> permission
+        When  I go to admin page
+        Then  "delete all" button is <state>
+
+        Examples:
+            | permission  | state   |
+            | read user   | hidden  |
+            | delete user | visible |
+~~~
+
+You can define mapped variable to improve unit tests : 
+
+~~~ts
+// example.spec.ts
+setVitestCucumberConfiguration({ // you can call it in vitest.setup.ts
+    ...getVitestCucumberConfiguration(),
+    mappedExamples: {
+        'read user': 'read',
+        'delete user': 'delete',
+        visible: true,
+        hidden: false,
+    },
+})
+
+describeFeature(featureCampagneFilter, ({ ScenarioOutline }) => {
+    ScenarioOutline(`Use mapped examples`, ({ Given, When, Then, And }, variables) => {
+        const user = new User()
+        let wrapper: VueWrapper
+
+        Given(`I am user with <permission> permission`, () => {
+            expect(["read", "delete"]).toContain(variable.permission)
+
+            // variables.permission will be "read" instead of "read user"
+            // same for "delete" and "delete user"
+            user.permission = variables.permission
+        })
+        And(`I go to admin page`, () => {
+            wrapper = mount(AdminPage, {
+                propsData: { user }
+            })
+        })
+        Then(`"delete all" button is <state>`, () => {
+            expect(
+                wrapper.find('button').exists()
+            ).toBe(variables.state) 
+            // variables.state will be fale / true instead of hidden and visible
+        })
+    })
+})
+~~~
