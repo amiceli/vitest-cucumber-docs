@@ -46,11 +46,19 @@ If you want to save time, **vitest-cucumber** is able to generate a spec file au
 You can use it like this:
 
 ~~~bash
-npx @amiceli/vitest-cucumber <path-to-feature> <path-to-spec>
+npx @amiceli/vitest-cucumber --feature <path-to-feature> --spec <path-to-spec> --lang <en:optional>
 ~~~
 
 Example:
 
 ~~~bash
-npx @amiceli/vitest-cucumber features/example.feature src/__tests__/example.spec.ts
+npx @amiceli/vitest-cucumber --feature features/example.feature --spec src/__tests__/example.spec.ts
+~~~
+
+By default feature file is parsed with `en` language.
+
+You can override this with `--lang` option :
+
+~~~bash
+npx @amiceli/vitest-cucumber --feature features/example.feature --spec src/__tests__/example.spec.ts --lang fr
 ~~~

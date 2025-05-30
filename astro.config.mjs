@@ -8,9 +8,13 @@ export default defineConfig({
             logo: {
                 src: "src/assets/logo.png",
             },
-            social: {
-                github: "https://github.com/amiceli/vitest-cucumber",
-            },
+            social: [
+                {
+                    icon: "github",
+                    label: "github",
+                    href: "https://github.com/amiceli/vitest-cucumber",
+                },
+            ],
             sidebar: [
                 {
                     label: "Get started",
@@ -63,7 +67,6 @@ export default defineConfig({
                                 {
                                     label: "Mapped examples",
                                     slug: "features/mapped-examples",
-                                    badge: "New",
                                 },
                             ],
                         },
@@ -82,12 +85,10 @@ export default defineConfig({
                         {
                             label: "Predefine steps",
                             slug: "features/predefine-steps",
-                            badge: "New",
                         },
                         {
                             label: "Structure context",
                             slug: "features/structure-context",
-                            badge: "New",
                         },
                         {
                             label: "skip / only",
