@@ -11,14 +11,14 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.35.2",
-    "astro": "^5.12.4",
+    "astro": "^5.13.5",
     "lineicons": "^1.3.2"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
-    "lefthook": "^1.11.13",
-    "sass": "^1.89.0"
+    "lefthook": "^1.12.3",
+    "sass": "^1.92.0"
   }
 }
