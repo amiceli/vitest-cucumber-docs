@@ -2,12 +2,13 @@
 title: Browser mode
 description: vitest-cucumber with browser mode
 ---
+import { Aside } from '@astrojs/starlight/components';
 
 ## Configuration
 
 Since `4.3.0` vitest-cucumber works with vitest browser mode
 
-A `vitest.config.js` example : 
+A `vitest.config.js` example :
 
 ```javascript
 export default defineConfig({
@@ -28,16 +29,32 @@ export default defineConfig({
 
 ## load feature files
 
-You have same features in browser mode. 
+You have same features in browser mode.
 
 Just you have to use `/browser` module :
 
 ```javascript
 import { describeFeature, loadFeature } from '@amiceli/vitest-cucumber/browser'
 
-const feature = await loadFeature('ex.feature')
+const feature = await loadFeature('/src/__tests__/ex.feature')
 
 describeFeature(feature, ({ Scenario }) => {
     // ...
 })
 ```
+
+### Relative path
+
+Since `5.2.1` vitest-cucumber allow to load file with relative path :
+
+```javascript
+const feature = await loadFeature('./ex.feature')
+```
+
+<Aside type="caution">
+    Currently it works with most used paths for test files like `src/` and `tests/`. [#258](https://github.com/amiceli/vitest-cucumber/issues/258)
+</Aside>
+
+<Aside type="tip">
+    To simplify path in browser mode you can use [`loadFeatureFromText`](https://vitest-cucumber.miceli.click/features/load-feature-from-text/).
+</Aside>

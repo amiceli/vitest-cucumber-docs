@@ -1,0 +1,14 @@
+---
+title: Load feature from text
+description: load feature from imported file or string
+---
+
+You can load Gherkin feature without path with `loadFeatureFromText`.
+
+For example :
+
+```javascript
+import featureContent from '../example.feature?raw'
+
+const feature = await loadFeatureFromText(featureContent)
+```

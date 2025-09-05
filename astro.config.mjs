@@ -119,6 +119,10 @@ export default defineConfig({
                             label: "Spoken language",
                             slug: "features/spoken-languages",
                         },
+                        {
+                            label: "Load feature from text",
+                            slug: "features/load-feature-from-text",
+                        },
                     ],
                 },
             ],
