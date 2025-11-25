@@ -1,3 +1,4 @@
+import sitemap from "@astrojs/sitemap"
 import starlight from "@astrojs/starlight"
 import { defineConfig } from "astro/config"
 
@@ -142,10 +143,22 @@ export default defineConfig({
                         defer: true,
                     },
                 },
+                {
+                    tag: "link",
+                    attrs: {
+                        src: "/sitemap-index.xml",
+                        rel: "sitemap",
+                    },
+                },
             ],
         }),
+        sitemap(),
     ],
     devToolbar: {
         enabled: false,
     },
+    server: {
+        port: 3333,
+    },
+    site: "https://vitest-cucumber.miceli.click/",
 })
