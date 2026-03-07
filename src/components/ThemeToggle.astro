@@ -3,7 +3,7 @@
 
 <starlight-theme-select>
     <button aria-label="Toggle theme" class="theme-toggle">
-        <svg class="icon sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="icon sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="5"></circle>
             <line x1="12" y1="1" x2="12" y2="3"></line>
             <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -14,7 +14,7 @@
             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
         </svg>
-        <svg class="icon moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="icon moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
     </button>
@@ -78,16 +78,15 @@
         align-items: center;
         justify-content: center;
         background: none;
-        border: 1px solid var(--sl-color-gray-5);
+        border: none;
         border-radius: 50%;
-        padding: 0.4rem;
+        padding: 0.2rem;
         cursor: pointer;
         color: var(--sl-color-gray-2);
         transition: color 0.2s, border-color 0.2s;
     }
     .theme-toggle:hover {
         color: var(--sl-color-accent);
-        border-color: var(--sl-color-accent);
     }
     :global(:root[data-theme='light']) .sun {
         display: none;

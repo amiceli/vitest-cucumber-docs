@@ -18,6 +18,7 @@ export default defineConfig({
             expressiveCode: false,
             components: {
                 ThemeSelect: "./src/components/ThemeToggle.astro",
+                SiteTitle: "./src/components/SiteTitle.astro",
             },
             social: [
                 {

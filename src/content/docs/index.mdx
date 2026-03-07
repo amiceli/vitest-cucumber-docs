@@ -3,7 +3,7 @@ title: vitest-cucumber
 description: Vitest & Gherkin powerred tests
 template: splash
 hero:
-  title: vitest-cucumber
+  title: <span class="hero-vitest">vitest</span><span class="hero-dash">-</span><span class="hero-cucumber">cucumber</span>
   tagline: Write tests that humans read
   actions:
     - text: Get started
@@ -11,15 +11,15 @@ hero:
       icon: right-arrow
       variant: primary
   image:
-    file: ../../assets/logo.png
+    html: <img src="/logo.png" alt="vitest-cucumber logo" />
 ---
 
 import { Badge, Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-## Get started
+<h2 class="delayed-intro">Start here</h2>
 
 <CardGrid stagger>
-	<Card title="Learning Path" icon="document">
+	<Card title="Get Started Guide" icon="document">
 		Learn how to use <Badge text="Gherkin" /> expressions like Scenario, Background and Rule to write tests that humans read.
 
 		[Get started →](/get-started/presentation)
