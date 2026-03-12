@@ -11,25 +11,20 @@ You can use Astro's built-in [`file()` loader](https://docs.astro.build/en/refer
 
 ~~~typescript
 // src/content.config.ts
-import { defineCollection, z } from "astro:content";
-import { file } from "astro/loaders";
-import {
-  loadFeatureFromText,
-  serializeFeature,
-  type FeatureType,
-} from "@amiceli/vitest-cucumber";
+import { defineCollection } from "astro:content"
+import { file } from "astro/loaders"
+import { loadFeatureFromText } from "@amiceli/vitest-cucumber"
 
 const features = defineCollection({
-  loader: file("../path/to/features/**/*.feature", {
-    parser: (content) => {
-      const feature = loadFeatureFromText(content);
-      return [serializeFeature(feature)];
-    },
-  }),
-  schema: z.custom<FeatureType>(),
-});
+    loader: file("../path/to/features/**/*.feature", {
+        parser: (content) => {
+            const feature = loadFeatureFromText(content)
+            return [feature]
+        },
+    }),
+})
 
-export const collections = { features };
+export const collections = { features }
 ~~~
 
 ## Custom loader
@@ -38,35 +33,34 @@ If you need more control (e.g. custom IDs, multiple languages, or filtering), yo
 
 ~~~typescript
 // src/loaders/feature-loader.ts
-import type { Loader } from "astro/loaders";
-import { readFile } from "node:fs/promises";
-import { glob as globby } from "glob";
-import { loadFeatureFromText, serializeFeature } from "@amiceli/vitest-cucumber";
+import type { Loader } from "astro/loaders"
+import { readFile } from "node:fs/promises"
+import { glob as globby } from "glob"
+import { loadFeatureFromText } from "@amiceli/vitest-cucumber"
 
 export function featureLoader(options: {
-  pattern: string;
-  base: string;
-  language?: string;
+    pattern: string
+    base: string
+    language?: string
 }): Loader {
-  return {
-    name: "feature-loader",
-    async load({ store, parseData }) {
-      const files = await globby(options.pattern, { cwd: options.base });
+    return {
+        name: "feature-loader",
+        async load({ store, parseData }) {
+            const files = await globby(options.pattern, { cwd: options.base })
 
-      for (const file of files) {
-        const fullPath = `${options.base}/${file}`;
-        const content = await readFile(fullPath, "utf-8");
-        const feature = loadFeatureFromText(content, {
-          language: options.language,
-        });
+            for (const file of files) {
+                const fullPath = `${options.base}/${file}`
+                const content = await readFile(fullPath, "utf-8")
+                const feature = loadFeatureFromText(content, {
+                    language: options.language,
+                })
 
-        const id = file.replace(/\.feature$/, "");
-        const data = serializeFeature(feature);
-        const parsed = await parseData({ id, data });
-        store.set({ id, data: parsed });
-      }
-    },
-  };
+                const id = file.replace(/\.feature$/, "")
+                const data = await parseData({ id, data: feature })
+                store.set({ id, data })
+            }
+        },
+    }
 }
 ~~~
 
@@ -77,9 +71,9 @@ When your collection is defined, you can [query it](https://docs.astro.build/en/
 ~~~astro
 ---
 // src/pages/features/index.astro
-import { getCollection } from "astro:content";
+import { getCollection } from "astro:content"
 
-const features = await getCollection("features");
+const features = await getCollection("features")
 ---
 
 <ul>
@@ -97,22 +91,22 @@ const features = await getCollection("features");
 ~~~astro
 ---
 // src/pages/features/[id].astro
-import { getCollection } from "astro:content";
+import { getCollection } from "astro:content"
 
 export async function getStaticPaths() {
-  const features = await getCollection("features");
-  return features.map((f) => ({ params: { id: f.id }, props: { feature: f } }));
+  const features = await getCollection("features")
+  return features.map((f) => ({ params: { id: f.id }, props: { feature: f } }))
 }
 
-const { feature } = Astro.props;
-const { name, description, scenarii, background, rules, tags } = feature.data;
+const { feature } = Astro.props
+const { name, description, scenarii, background, rules, tags } = feature.data
 ---
 
 <h1>{name}</h1>
 {description && <p>{description}</p>}
-{tags.length > 0 && (
+{tags.size > 0 && (
   <div>
-    {tags.map((tag) => <span>@{tag}</span>)}
+    {[...tags].map((tag) => <span>@{tag}</span>)}
   </div>
 )}
 
@@ -120,16 +114,16 @@ const { name, description, scenarii, background, rules, tags } = feature.data;
   <section>
     <h2>Background</h2>
     <ul>
-      {background.steps.map((s) => <li>{s.type} {s.details}</li>)}
+      {[...background.steps].map((s) => <li>{s.type} {s.details}</li>)}
     </ul>
   </section>
 )}
 
-{scenarii.map((scenario) => (
+{[...scenarii].map((scenario) => (
   <section>
-    <h2>{scenario.keyword}</h2>
+    <h2>{scenario.getTitle()}</h2>
     <ul>
-      {scenario.steps.map((s) => <li>{s.type} {s.details}</li>)}
+      {[...scenario.steps].map((s) => <li>{s.type} {s.details}</li>)}
     </ul>
   </section>
 ))}

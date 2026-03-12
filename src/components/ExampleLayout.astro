@@ -5,7 +5,7 @@ interface Props {
 }
 
 const { src, repo } = Astro.props
-const baseSrc = src.replace(/&theme=(dark|light)/, '')
+const _baseSrc = src.replace(/&theme=(dark|light)/, "")
 ---
 
 {repo && (

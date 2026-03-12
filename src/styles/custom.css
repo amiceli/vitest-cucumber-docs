@@ -152,19 +152,35 @@ main a:not(.sl-link-button):hover {
 }
 
 @keyframes bump-left {
-    0%, 100% { translate: 0; }
-    50% { translate: 0.15em; }
+    0%,
+    100% {
+        translate: 0;
+    }
+    50% {
+        translate: 0.15em;
+    }
 }
 
 @keyframes bump-right {
-    0%, 100% { translate: 0; }
-    50% { translate: -0.15em; }
+    0%,
+    100% {
+        translate: 0;
+    }
+    50% {
+        translate: -0.15em;
+    }
 }
 
 @keyframes dash-squeeze {
-    0% { transform: scaleX(1); }
-    50% { transform: scaleX(0.3); }
-    100% { transform: scaleX(0.5); }
+    0% {
+        transform: scaleX(1);
+    }
+    50% {
+        transform: scaleX(0.3);
+    }
+    100% {
+        transform: scaleX(0.5);
+    }
 }
 
 /* Title bar - fast on hover */
@@ -194,16 +210,19 @@ main a:not(.sl-link-button):hover {
 }
 
 [data-has-hero] .hero h1 .hero-vitest {
-    animation: bump-left var(--bump-duration) var(--bump-easing) var(--bump-delay);
+    animation: bump-left var(--bump-duration) var(--bump-easing)
+        var(--bump-delay);
 }
 
 [data-has-hero] .hero h1 .hero-cucumber {
-    animation: bump-right var(--bump-duration) var(--bump-easing) var(--bump-delay);
+    animation: bump-right var(--bump-duration) var(--bump-easing)
+        var(--bump-delay);
 }
 
 [data-has-hero] .hero h1 .hero-dash {
     transform: scaleX(1);
-    animation: dash-squeeze var(--bump-duration) var(--bump-easing) var(--bump-delay) forwards;
+    animation: dash-squeeze var(--bump-duration) var(--bump-easing)
+        var(--bump-delay) forwards;
 }
 
 .right-group {
@@ -253,7 +272,7 @@ main a:not(.sl-link-button):hover {
     animation-delay: 1.9s;
 }
 .card:nth-child(3) {
-    animation-delay: 2.0s;
+    animation-delay: 2s;
 }
 .card:nth-child(4) {
     animation-delay: 2.1s;
