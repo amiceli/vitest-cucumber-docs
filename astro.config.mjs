@@ -1,13 +1,24 @@
 import sitemap from "@astrojs/sitemap"
 import starlight from "@astrojs/starlight"
 import { defineConfig } from "astro/config"
+import cssVariablesTheme from "./src/themes/css-variables.json"
 
 export default defineConfig({
+    markdown: {
+        shikiConfig: {
+            theme: cssVariablesTheme,
+        },
+    },
     integrations: [
         starlight({
             title: "vitest-cucumber",
             logo: {
                 src: "src/assets/logo.png",
+            },
+            expressiveCode: false,
+            components: {
+                ThemeSelect: "./src/components/ThemeToggle.astro",
+                SiteTitle: "./src/components/SiteTitle.astro",
             },
             social: [
                 {
@@ -18,10 +29,11 @@ export default defineConfig({
             ],
             sidebar: [
                 {
-                    label: "Get started",
+                    label: "Guide",
+                    collapsed: true,
                     items: [
                         {
-                            label: "Presentation",
+                            label: "Get Started",
                             slug: "get-started/presentation",
                         },
                         {
@@ -36,23 +48,19 @@ export default defineConfig({
                             label: "Browser mode",
                             slug: "get-started/browser-mode",
                         },
-                    ],
-                },
-                {
-                    label: "Vitest plugin",
-                    items: [
                         {
-                            label: "Setup",
-                            slug: "plugin/setup",
+                            label: "Utilities",
+                            slug: "integrations/utilities",
                         },
                     ],
                 },
                 {
                     label: "Features",
+                    collapsed: true,
                     items: [
                         {
-                            label: "Gherkin",
-                            slug: "features/gherkin",
+                            label: "Feature",
+                            slug: "features/feature",
                         },
                         {
                             label: "Scenario",
@@ -60,6 +68,7 @@ export default defineConfig({
                         },
                         {
                             label: "Scenario Outline",
+                            collapsed: true,
                             items: [
                                 {
                                     label: "Use Scenario Outline",
@@ -127,6 +136,43 @@ export default defineConfig({
                         {
                             label: "Tests without feature file",
                             slug: "features/define-feature",
+                        },
+                    ],
+                },
+                {
+                    label: "Integrations",
+                    collapsed: true,
+                    items: [
+                        {
+                            label: "Vitest plugin",
+                            slug: "integrations/setup",
+                        },
+                        {
+                            label: "Astro",
+                            slug: "integrations/astro",
+                            badge: { text: "New", variant: "success" },
+                        },
+                    ],
+                },
+                {
+                    label: "Examples",
+                    collapsed: true,
+                    items: [
+                        {
+                            label: "Vitest",
+                            slug: "examples/vitest",
+                        },
+                        {
+                            label: "Vue",
+                            slug: "examples/vue",
+                        },
+                        {
+                            label: "React",
+                            slug: "examples/react",
+                        },
+                        {
+                            label: "Astro",
+                            slug: "examples/astro",
                         },
                     ],
                 },

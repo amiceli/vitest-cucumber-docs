@@ -3,36 +3,40 @@ title: vitest-cucumber
 description: Vitest & Gherkin powerred tests
 template: splash
 hero:
-  title: Vitest & Gherkin powerred tests
-  tagline: Scenario, Backgroaund, Rule or DocStrings in your spec files
-  image:
-    file: ../../assets/logo.png
+  title: <span class="hero-vitest">vitest</span><span class="hero-dash">-</span><span class="hero-cucumber">cucumber</span>
+  tagline: Write tests that humans read
   actions:
     - text: Get started
       link: /get-started/presentation
       icon: right-arrow
-    - text: View on Github
-      link: https://github.com/amiceli/vitest-cucumber
-      variant: minimal
+      variant: primary
+  image:
+    html: <img src="/logo.png" alt="vitest-cucumber logo" />
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Badge, Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-## Next steps
+<h2 class="delayed-intro">Start here</h2>
 
 <CardGrid stagger>
-	<Card 
-        title="Playground" 
-        icon="codePen"
-    >
-		Try vitest-cucumber with [stackblitz](https://stackblitz.com/github/amiceli/vitest-cucumber-docs/tree/main/examples/basic?embed=1&theme=dark&view=editor&preset=node&startScript=test&file=features/example.feature&file=features/example.spec.ts).
+	<Card title="Get Started Guide" icon="document">
+		Learn how to use <Badge text="Gherkin" /> expressions like Scenario, Background and Rule to write tests that humans read.
+
+		[Get started →](/get-started/presentation)
 	</Card>
-	<Card 
-        title="Example projects" 
-        icon="seti:github"
-    >
-		Check [Vue](https://github.com/amiceli/vitest-cucumber-example) and
-        [React](https://github.com/Agriculture-Intelligence/vitest-cucumber_rtl_template)
-        projects using vitest-cucumber
+	<Card title="Example projects" icon="rocket">
+		Check out some vitest-cucumber example projects in <Badge text="React" /> <Badge text="Vue" /> and <Badge text="Astro" />.
+
+		[All examples →](/examples/vitest)
+	</Card>
+	<Card title="Integrations" icon="puzzle">
+		Use **.feature** files in your existing <Badge text="Vitest" /> projects or even with <Badge text="Astro" /> or any front-end framework.
+
+		[All integrations →](/integrations/setup)
+	</Card>
+	<Card title="Get involved" icon="github">
+		See the code, open issues, and contribute on <Badge text="GitHub" />.
+
+		[GitHub →](https://github.com/amiceli/vitest-cucumber)
 	</Card>
 </CardGrid>

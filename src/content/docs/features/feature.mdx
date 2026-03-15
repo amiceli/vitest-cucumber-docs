@@ -1,0 +1,46 @@
+---
+title: Feature
+description: vitest-cucumber Feature anatomy and testing
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="tip">
+This definition maps to the [`FeatureType`](/integrations/utilities#featuretype) type. Use [`serializeFeature`](/integrations/utilities#serialization) to parse and serialize a feature file.
+</Aside>
+
+To describe a capability of your application, use the `Feature` keyword. It is the top-level keyword in a Gherkin file and groups related scenarii under a single description.
+
+## Anatomy
+
+To structure a `Feature` file, you can use the following parts:
+
+- [`Scenario`](/features/scenario) — to illustrate a concrete example of a behaviour
+- [`Scenario Outline`](/features/scenario-outline) — to run a scenario template with variable `Examples`
+- [`Background`](/features/background) — to define shared `Given` steps that run before each `Scenario`
+- [`Rule`](/features/rule) — to group scenarii under a single business rule
+- Steps — to describe actions with [`Given`](/features/scenario), [`When`](/features/scenario), [`Then`](/features/scenario), `And`, `But`
+- [`Tags`](/features/gherkin-tags) — to annotate and filter scenarii
+- [`DocStrings`](/features/doc-strings) — to pass multi-line text arguments to steps
+- [`DataTables`](/features/data-tables) — to pass tabular data arguments to steps
+- [Step expressions](/features/step-expression) — to match steps with parameters
+
+To add a description to your `Feature`, write free-text lines between the `Feature:` keyword and the first `Scenario`, `Background`, or `Rule`. **vitest-cucumber** parses and preserves this description.
+
+## Testing
+
+### Before unit tests run
+
+To validate your *feature* file, call `loadFeature`. **vitest-cucumber** parses your file and checks that:
+- You have `Examples` in your `Scenario Outline`
+- You use `Examples` variables in your `Scenario Outline` steps
+
+Since **[3.3.2](https://github.com/amiceli/vitest-cucumber/releases/tag/v3.3.2)** you can use `Example`, `Scenarios` and `Scenario Template` synonyms.
+
+### After unit tests run
+
+To ensure full coverage, **vitest-cucumber** checks after all unit tests:
+- non tested `Scenario` and/or `Scenario Outline`
+- non tested `Scenario` and/or `Scenario Outline` steps
+- non tested `Feature`
+- non tested `Rule`

@@ -1,0 +1,26 @@
+---
+title: Utilities
+description: vitest-cucumber CLI utilities
+---
+
+## Generating a spec file
+
+To save time, you can generate a spec file automatically from a *feature* file via the CLI:
+
+~~~bash
+npx @amiceli/vitest-cucumber --feature <path-to-feature> --spec <path-to-spec> --lang <en:optional>
+~~~
+
+Example:
+
+~~~bash
+npx @amiceli/vitest-cucumber --feature features/example.feature --spec src/__tests__/example.spec.ts
+~~~
+
+To parse a *feature* file in a different language, use the `--lang` option:
+
+~~~bash
+npx @amiceli/vitest-cucumber --feature features/example.feature --spec src/__tests__/example.spec.ts --lang fr
+~~~
+
+By default the *feature* file is parsed with `en` language.

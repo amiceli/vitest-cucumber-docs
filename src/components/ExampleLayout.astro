@@ -1,0 +1,70 @@
+---
+interface Props {
+    src: string
+    repo?: string
+}
+
+const { src, repo } = Astro.props
+const _baseSrc = src.replace(/&theme=(dark|light)/, "")
+---
+
+{repo && (
+    <div class="example-bar">
+        <a href={repo} target="_blank" rel="noopener" class="example-repo">
+            View on GitHub →
+        </a>
+    </div>
+)}
+
+<iframe
+    title="Example"
+    data-base-src={baseSrc}
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+    class="example-frame"
+/>
+
+<script>
+    function syncTheme() {
+        const frame = document.querySelector<HTMLIFrameElement>('.example-frame')
+        if (!frame) return
+        const base = frame.dataset.baseSrc
+        const theme = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'
+        const src = `${base}&theme=${theme}`
+        if (frame.src !== src) frame.src = src
+    }
+
+    syncTheme()
+
+    const observer = new MutationObserver(syncTheme)
+    observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme'],
+    })
+</script>
+
+<style>
+    .example-bar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-bottom: 1rem;
+    }
+
+    .example-repo {
+        font-size: 0.85rem;
+        color: var(--sl-color-gray-3);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .example-repo:hover {
+        color: var(--sl-color-accent);
+    }
+
+    .example-frame {
+        width: 100%;
+        height: 600px;
+        border: 1px solid var(--sl-color-gray-5);
+        border-radius: 8px;
+    }
+</style>

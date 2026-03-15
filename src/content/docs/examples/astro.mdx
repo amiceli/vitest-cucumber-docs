@@ -1,0 +1,19 @@
+---
+title: Astro
+description: Try vitest-cucumber with Astro
+tableOfContents: false
+src: https://stackblitz.com/github/amiceli/vitest-cucumber-docs/tree/main/examples/basic?embed=1&theme=dark&view=editor&preset=node&startScript=test&file=features/example.feature&file=features/example.spec.ts
+repo: https://github.com/amiceli/vitest-cucumber-docs/tree/main/examples/basic
+---
+
+import { Aside } from '@astrojs/starlight/components'
+import ExampleLayout from '../../../components/ExampleLayout.astro'
+
+<Aside type="tip">
+To learn how to use **vitest-cucumber** with Astro content collections, check the [Astro integration guide](/integrations/astro).
+</Aside>
+
+<ExampleLayout
+    src={frontmatter.src}
+    repo={frontmatter.repo}
+/>

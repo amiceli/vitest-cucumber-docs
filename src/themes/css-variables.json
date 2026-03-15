@@ -1,0 +1,210 @@
+{
+    "name": "css-variables",
+    "type": "dark",
+    "colors": {
+        "editor.foreground": "var(--code-foreground)",
+        "editor.background": "var(--code-background)"
+    },
+    "tokenColors": [
+        {
+            "settings": {
+                "foreground": "var(--code-foreground)"
+            }
+        },
+        {
+            "scope": [
+                "comment",
+                "punctuation.definition.comment",
+                "string.comment"
+            ],
+            "settings": {
+                "foreground": "var(--code-comment)"
+            }
+        },
+        {
+            "scope": ["string", "string.quoted", "string.template"],
+            "settings": {
+                "foreground": "var(--code-string)"
+            }
+        },
+        {
+            "scope": ["constant.numeric"],
+            "settings": {
+                "foreground": "var(--code-number)"
+            }
+        },
+        {
+            "scope": ["constant.language"],
+            "settings": {
+                "foreground": "var(--code-boolean)"
+            }
+        },
+        {
+            "scope": [
+                "constant",
+                "variable.other.constant",
+                "variable.other.enummember"
+            ],
+            "settings": {
+                "foreground": "var(--code-constant)"
+            }
+        },
+        {
+            "scope": [
+                "keyword",
+                "keyword.operator.expression",
+                "storage.type",
+                "storage.modifier"
+            ],
+            "settings": {
+                "foreground": "var(--code-keyword)"
+            }
+        },
+        {
+            "scope": [
+                "entity.name.function",
+                "support.function",
+                "meta.function-call"
+            ],
+            "settings": {
+                "foreground": "var(--code-function)"
+            }
+        },
+        {
+            "scope": [
+                "entity.name.type",
+                "entity.name.class",
+                "support.type",
+                "support.class"
+            ],
+            "settings": {
+                "foreground": "var(--code-class)"
+            }
+        },
+        {
+            "scope": [
+                "support.type.property-name",
+                "variable.other.property",
+                "entity.other.attribute-name",
+                "meta.object-literal.key"
+            ],
+            "settings": {
+                "foreground": "var(--code-property)"
+            }
+        },
+        {
+            "scope": ["variable", "variable.other", "variable.parameter"],
+            "settings": {
+                "foreground": "var(--code-variable)"
+            }
+        },
+        {
+            "scope": [
+                "support.variable",
+                "support.constant",
+                "entity.name.type.module"
+            ],
+            "settings": {
+                "foreground": "var(--code-builtin)"
+            }
+        },
+        {
+            "scope": ["punctuation", "meta.brace", "meta.bracket"],
+            "settings": {
+                "foreground": "var(--code-punctuation)"
+            }
+        },
+        {
+            "scope": ["entity.name.tag", "punctuation.definition.tag"],
+            "settings": {
+                "foreground": "var(--code-keyword)"
+            }
+        },
+        {
+            "scope": ["string.regexp"],
+            "settings": {
+                "foreground": "var(--code-regex)"
+            }
+        },
+        {
+            "scope": ["markup.deleted", "punctuation.definition.deleted"],
+            "settings": {
+                "foreground": "var(--code-deleted)"
+            }
+        },
+        {
+            "scope": ["markup.inserted", "punctuation.definition.inserted"],
+            "settings": {
+                "foreground": "var(--code-function)"
+            }
+        },
+        {
+            "scope": ["entity.name.namespace", "entity.name.module"],
+            "settings": {
+                "foreground": "var(--code-namespace)"
+            }
+        },
+        {
+            "scope": ["meta.decorator", "punctuation.decorator"],
+            "settings": {
+                "foreground": "var(--code-decorator)"
+            }
+        },
+        {
+            "scope": ["keyword.operator", "keyword.operator.assignment"],
+            "settings": {
+                "foreground": "var(--code-punctuation)"
+            }
+        },
+        {
+            "scope": ["constant.other.color", "constant.other.symbol"],
+            "settings": {
+                "foreground": "var(--code-literal)"
+            }
+        },
+        {
+            "scope": ["markup.heading", "entity.name.section"],
+            "settings": {
+                "foreground": "var(--code-keyword)",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "scope": ["markup.bold"],
+            "settings": {
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "scope": ["markup.italic"],
+            "settings": {
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "scope": ["markup.underline"],
+            "settings": {
+                "fontStyle": "underline"
+            }
+        },
+        {
+            "name": "JSON property",
+            "scope": ["support.type.property-name.json"],
+            "settings": {
+                "foreground": "var(--code-property)"
+            }
+        },
+        {
+            "name": "Gherkin keywords",
+            "scope": [
+                "keyword.control.cucumber",
+                "keyword.control.feature.gherkin",
+                "keyword.control.scenario.gherkin",
+                "keyword.control.step.gherkin"
+            ],
+            "settings": {
+                "foreground": "var(--code-keyword)"
+            }
+        }
+    ]
+}

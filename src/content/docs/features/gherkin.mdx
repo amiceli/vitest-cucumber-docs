@@ -1,49 +1,31 @@
 ---
 title: Gherkin
-description: vitest-cucumber goals
+description: vitest-cucumber and the Gherkin specification
 ---
 
-## Gherkin validation
+import { Aside } from '@astrojs/starlight/components';
 
-**vitest-cucumber** uses its own feature file parser and validate it before 
-running unit tests.
+To use **vitest-cucumber**, you first need to understand [Gherkin](https://cucumber.io/docs/gherkin/reference/). Gherkin is a language for writing structured, human-readable specifications. It uses keywords like `Feature`, `Scenario`, and `Given`/`When`/`Then` to describe how software should behave.
 
-And check ths tests for all scenario, steps, etc.
+To write a Gherkin specification, create a `.feature` file:
 
-## Before unit tests run
+~~~gherkin
+Feature: User login
+  Users should be able to log in with valid credentials
 
-When you call `loadFeature`, **vitest-cucumber** parses and validates your *feature* file.
-It implements [gherkin keywords](https://cucumber.io/docs/gherkin/reference/): 
-- `Scenario`
-- `Scenario Outline`
-- `Feature`
-- `Examples`
-- `Rule`
-- Steps : `Given`, `When`, `Then`, `And`, `But`
+  Scenario: Valid credentials
+    Given a registered user
+    When they enter valid credentials
+    Then they are logged in
+~~~
 
-Since **[3.3.2](https://github.com/amiceli/vitest-cucumber/releases/tag/v3.3.2)** version you can use `Example`, `Scenarios` and `Scenario Template` synonyms.
+<Aside>
+**vitest-cucumber** implements the [Gherkin specification](https://cucumber.io/docs/gherkin/reference/) and lets you use your *feature* files as complete *Vitest* test suites. To set it up, see the [Vitest plugin](/integrations/setup) integration.
+</Aside>
 
-### Validation
+## Generating a spec file
 
-When **vitest-cucumber** parses your *feature* file, it checks that:
-- You have an `Examples` in your `Scenario Outline`
-- You use `Examples` variables in your `Scenario Outline` steps
-
-## After unit tests run
-
-### Validation
-
-After all unit tests **vitest-cucumber**, it checks:
-- non tested `Scenario` and/or `Scenario Outline`
-- non tested `Scenario` and/or `Scenario Outline` steps
-- non tested `Feature`
-- non tested `Rule`
-
-## Generate spec file from feature file
-
-If you want to save time, **vitest-cucumber** is able to generate a spec file automatically via the CLI.
-
-You can use it like this:
+To save time, you can generate a spec file automatically from a *feature* file via the CLI:
 
 ~~~bash
 npx @amiceli/vitest-cucumber --feature <path-to-feature> --spec <path-to-spec> --lang <en:optional>
@@ -55,10 +37,10 @@ Example:
 npx @amiceli/vitest-cucumber --feature features/example.feature --spec src/__tests__/example.spec.ts
 ~~~
 
-By default feature file is parsed with `en` language.
-
-You can override this with `--lang` option :
+To parse a *feature* file in a different language, use the `--lang` option:
 
 ~~~bash
 npx @amiceli/vitest-cucumber --feature features/example.feature --spec src/__tests__/example.spec.ts --lang fr
 ~~~
+
+By default the *feature* file is parsed with `en` language.

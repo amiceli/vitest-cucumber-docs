@@ -3,6 +3,12 @@ title: Scenario Outline
 description: vitest-cucumber goals
 ---
 
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="tip">
+This definition maps to the [`ScenarioOutlineType`](/integrations/utilities#scenariooutlinetype) type. Use [`serializeFeature`](/integrations/utilities#serialization) to parse and serialize feature files.
+</Aside>
+
 A `Scenario Outline` should always have an `Examples` block, otherwise **vitest-cucumber**
 will throw an error before running unit tests.
 

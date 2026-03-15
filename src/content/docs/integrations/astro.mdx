@@ -1,0 +1,130 @@
+---
+title: Astro
+description: vitest-cucumber with Astro content collections
+---
+
+You can use **vitest-cucumber** with [Astro content collections](https://docs.astro.build/en/guides/content-collections/) to generate documentation pages from the same *feature* files your tests use. This guide uses [`loadFeatureFromText`](/features/load-feature-from-text) to parse *feature* files into `Feature` objects.
+
+## Define the content collection
+
+You can use Astro's built-in [`file()` loader](https://docs.astro.build/en/reference/content-loader-reference/#file) with `loadFeatureFromText` as a custom parser:
+
+~~~typescript
+// src/content.config.ts
+import { defineCollection } from "astro:content"
+import { file } from "astro/loaders"
+import { loadFeatureFromText } from "@amiceli/vitest-cucumber"
+
+const features = defineCollection({
+    loader: file("../path/to/features/**/*.feature", {
+        parser: (content) => {
+            const feature = loadFeatureFromText(content)
+            return [feature]
+        },
+    }),
+})
+
+export const collections = { features }
+~~~
+
+## Custom loader
+
+If you need more control (e.g. custom IDs, multiple languages, or filtering), you can write a [custom loader](https://docs.astro.build/en/reference/content-loader-reference/#object-loaders):
+
+~~~typescript
+// src/loaders/feature-loader.ts
+import type { Loader } from "astro/loaders"
+import { readFile } from "node:fs/promises"
+import { glob as globby } from "glob"
+import { loadFeatureFromText } from "@amiceli/vitest-cucumber"
+
+export function featureLoader(options: {
+    pattern: string
+    base: string
+    language?: string
+}): Loader {
+    return {
+        name: "feature-loader",
+        async load({ store, parseData }) {
+            const files = await globby(options.pattern, { cwd: options.base })
+
+            for (const file of files) {
+                const fullPath = `${options.base}/${file}`
+                const content = await readFile(fullPath, "utf-8")
+                const feature = loadFeatureFromText(content, {
+                    language: options.language,
+                })
+
+                const id = file.replace(/\.feature$/, "")
+                const data = await parseData({ id, data: feature })
+                store.set({ id, data })
+            }
+        },
+    }
+}
+~~~
+
+## Query and render
+
+When your collection is defined, you can [query it](https://docs.astro.build/en/reference/modules/astro-content/#getcollection) like any other Astro content collection:
+
+~~~astro
+---
+// src/pages/features/index.astro
+import { getCollection } from "astro:content"
+
+const features = await getCollection("features")
+---
+
+<ul>
+  {features.map((f) => (
+    <li>
+      <a href={`/features/${f.id}`}>{f.data.name}</a>
+      {f.data.description && <p>{f.data.description}</p>}
+    </li>
+  ))}
+</ul>
+~~~
+
+### Individual feature page
+
+~~~astro
+---
+// src/pages/features/[id].astro
+import { getCollection } from "astro:content"
+
+export async function getStaticPaths() {
+  const features = await getCollection("features")
+  return features.map((f) => ({ params: { id: f.id }, props: { feature: f } }))
+}
+
+const { feature } = Astro.props
+const { name, description, scenarii, background, rules, tags } = feature.data
+---
+
+<h1>{name}</h1>
+{description && <p>{description}</p>}
+{tags.size > 0 && (
+  <div>
+    {[...tags].map((tag) => <span>@{tag}</span>)}
+  </div>
+)}
+
+{background && (
+  <section>
+    <h2>Background</h2>
+    <ul>
+      {[...background.steps].map((s) => <li>{s.type} {s.details}</li>)}
+    </ul>
+  </section>
+)}
+
+{[...scenarii].map((scenario) => (
+  <section>
+    <h2>{scenario.getTitle()}</h2>
+    <ul>
+      {[...scenario.steps].map((s) => <li>{s.type} {s.details}</li>)}
+    </ul>
+  </section>
+))}
+~~~

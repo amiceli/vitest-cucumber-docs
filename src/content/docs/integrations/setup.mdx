@@ -1,16 +1,32 @@
 ---
-title: Setup
+title: Vitest Plugin
 description: vitest-cucumber plugin
 ---
 
-## About plugin
+import { Aside } from '@astrojs/starlight/components';
 
-Since `4.1.1` vitest-cucumber provides a vitest plugin to create / update `.spec.ts` file
-watching `.feature` file.
+**vitest-cucumber** is a framework built on top of [Vitest](https://vitest.dev/). It wraps Vitest's lifecycle methods (`describe`, `test`, `beforeAll`, etc.) behind Gherkin keywords, so your test structure mirrors the *feature* file.
 
-**This plugin is optional**, it doesn't change how vitest-cucumber. It's a new feature ;).
+| Vitest | vitest-cucumber | When to use |
+|--------|----------------|-------------|
+| `describe` | `describeFeature` / `Scenario` / `Rule` | Grouping tests — driven by your `.feature` file |
+| `test` | `Given` / `When` / `Then` / `And` / `But` | Individual assertions — each step is a test |
+| `beforeAll` | `BeforeAllScenarios` | One-time setup before all scenarii |
+| `beforeEach` | `BeforeEachScenario` / `Background` | Per-scenario setup |
+| `afterEach` | `AfterEachScenario` | Per-scenario teardown |
+| `afterAll` | `AfterAllScenarios` | One-time teardown after all scenarii |
 
-**NB** : currently this plugin doesn't work with vitest browser mode.
+<Aside type="caution" title="State management">
+Because **vitest-cucumber** controls the test lifecycle, avoid mixing Vitest's `beforeAll`/`beforeEach` with vitest-cucumber hooks in the same file. Use [`Background`](/features/background) for shared `Given` steps, [`Hooks`](/features/hooks) for setup/teardown, [`Predefine steps`](/features/predefine-steps) for reusable steps across scenarii, and [`Structure context`](/features/structure-context) to share state between steps within a scenario.
+</Aside>
+
+## Vitest plugin
+
+Since `4.1.1` vitest-cucumber provides a Vitest plugin to automatically create and update `.spec.ts` files when `.feature` files change.
+
+**This plugin is optional** — it does not change how vitest-cucumber runs tests.
+
+**Note**: currently this plugin doesn't work with vitest browser mode.
 
 ## Use plugin
 
@@ -35,7 +51,7 @@ export default defineConfig({
 Now when you run vitest, vitest-cucumber will watch your `.feature` file in `src/features`.
 
 By example, if your create `src/features/user-auth.feature`, vitest-cucumber will create 
-`src/__tests__/user-auth.spec.ts` file like [`npx @amiceli/vitest-cucumber`](https://vitest-cucumber.miceli.click/features/gherkin) does.
+`src/__tests__/user-auth.spec.ts` file like [`npx @amiceli/vitest-cucumber`](/features/gherkin) does.
 
 ## Update spec file
 
