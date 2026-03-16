@@ -2,7 +2,7 @@
 
 This project contains doc for [vitest-cucumber](https://github.com/amiceli/vitest-cucumber).
 
-Is built with [Astro](https://astro.build/) and [Nord web components](https://nordhealth.design/web-components/).
+Is built with [Astro](https://astro.build/) and [Starlight](https://starlight.astro.build/fr/).
 
 ## Run project
 
