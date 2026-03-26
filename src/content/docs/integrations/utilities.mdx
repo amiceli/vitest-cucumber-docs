@@ -24,3 +24,88 @@ npx @amiceli/vitest-cucumber --feature features/example.feature --spec src/__tes
 ~~~
 
 By default the *feature* file is parsed with `en` language.
+
+## Parsing
+
+Use `loadFeatureFromText` to parse Gherkin content outside a vitest runner (build scripts, Astro loaders, etc.). Import from the `./loadFeatureFromText` subpath to avoid pulling in vitest internals:
+
+~~~typescript
+import { loadFeatureFromText } from '@amiceli/vitest-cucumber/loadFeatureFromText'
+
+const feature = loadFeatureFromText(content)
+~~~
+
+## Serialization
+
+Use `serializeFeature` to convert a parsed `Feature` instance to a plain object:
+
+~~~typescript
+import { serializeFeature, type FeatureType } from '@amiceli/vitest-cucumber'
+
+const plain: FeatureType = serializeFeature(feature)
+~~~
+
+### FeatureType
+
+~~~typescript
+type FeatureType = {
+    name: string
+    description: string
+    tags: string[]
+    background: BackgroundType | null
+    scenarii: (ScenarioType | ScenarioOutlineType)[]
+    rules: RuleType[]
+}
+~~~
+
+### ScenarioType
+
+~~~typescript
+type ScenarioType = {
+    description: string  // scenario name
+    tags: string[]
+    steps: StepType[]
+}
+~~~
+
+### ScenarioOutlineType
+
+~~~typescript
+type ScenarioOutlineType = ScenarioType & {
+    examples: { [key: string]: any }[]
+}
+~~~
+
+Discriminate with `'examples' in scenario`.
+
+### BackgroundType
+
+~~~typescript
+type BackgroundType = {
+    tags: string[]
+    steps: StepType[]
+}
+~~~
+
+### RuleType
+
+~~~typescript
+type RuleType = {
+    name: string
+    description: string
+    tags: string[]
+    background: BackgroundType | null
+    scenarii: (ScenarioType | ScenarioOutlineType)[]
+}
+~~~
+
+### StepType
+
+~~~typescript
+type StepType = {
+    type: string           // "Given" | "When" | "Then" | "And" | "But"
+    details: string        // step text after the keyword
+    docStrings: string | null
+    dataTables: { [key: string]: string }[]
+}
+~~~
