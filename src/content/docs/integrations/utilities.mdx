@@ -35,15 +35,7 @@ import { loadFeatureFromText } from '@amiceli/vitest-cucumber/loadFeatureFromTex
 const feature = loadFeatureFromText(content)
 ~~~
 
-## Serialization
-
-Use `serializeFeature` to convert a parsed `Feature` instance to a plain object:
-
-~~~typescript
-import { serializeFeature, type FeatureType } from '@amiceli/vitest-cucumber'
-
-const plain: FeatureType = serializeFeature(feature)
-~~~
+## Types
 
 ### FeatureType
 
