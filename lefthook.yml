@@ -1,8 +1,10 @@
 pre-commit:
   commands:
     check:
-      glob: "*.{js,vue,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
-      run: npx biome check --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
+      run: npx biome check --staged
+    check-links:
+      glob: "src/content/docs/**/*.{md,mdx}"
+      run: npm run check-links
 
 commit-msg:
   commands:
