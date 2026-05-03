@@ -114,7 +114,21 @@ export default defineConfig({
                         },
                         {
                             label: "Step expressions",
-                            slug: "features/step-expression",
+                            collapsed: true,
+                            items: [
+                                {
+                                    label: "Step expressions",
+                                    slug: "features/step-expression",
+                                },
+                                {
+                                    label: "Generic steps",
+                                    slug: "features/step-generic",
+                                    badge: {
+                                        text: "v6.4.0",
+                                        variant: "success",
+                                    },
+                                },
+                            ],
                         },
                         {
                             label: "DocStrings",
