@@ -198,6 +198,13 @@ Given('I Vue {any}', (ctx : result: string) => {
 })
 ~~~
 
+## Generic steps
+
+Since `6.4.0`, **vitest-cucumber** also supports generic steps via `Step(...)` in `defineSteps`.
+A generic step matches any step keyword (`Given`, `When`, `Then`, `And`, `But`) when the step details or expression pattern are the same.
+
+See [Generic steps](/features/step-generic) for details and an example.
+
 ### `{email}` <nord-badge variant="info">v4.0.0</nord-badge>
 
 Match any email.

@@ -1,0 +1,54 @@
+---
+title: Generic steps
+description: Define generic step definitions that match any step type
+date: 2026-05-03
+---
+
+Since `6.4.0`, **vitest-cucumber** supports generic step definitions with `Step(...)`.
+
+A generic step matches any keyword (`Given`, `When`, `Then`, `And`, `But`) when the step text or expression is the same.
+
+## Example
+
+~~~gherkin
+Feature: Generic step example
+    Scenario: Same step with different keywords
+        Given I have a generic step
+        And I have a generic step
+        But I have a generic step
+        Then I can use it
+~~~
+
+~~~typescript
+import { loadFeature, describeFeature } from "@amiceli/vitest-cucumber"
+
+const feature = await loadFeature("src/features/generic-step.feature")
+
+describeFeature(feature, (f) => {
+    f.defineSteps(({ Step, Then }) => {
+        Step("I have a generic step", (ctx) => {
+            ctx.calls = (ctx.calls || 0) + 1
+        })
+
+        Then("I can use it", (ctx) => {
+            expect(ctx.calls).toBe(3)
+        })
+    })
+
+    f.Scenario("Same step with different keywords", () => {})
+})
+~~~
+
+## Expressions
+
+Generic steps also support expressions:
+
+~~~typescript
+f.defineSteps(({ Step }) => {
+    Step("I have {int} apples", (ctx, count: number) => {
+        expect(count).toBeGreaterThan(0)
+    })
+})
+~~~
+
+It matches any keyword when the text matches the same pattern.
