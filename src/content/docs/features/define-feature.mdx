@@ -9,9 +9,58 @@ description: Use vitest-cucumber without feature file
 
 ### Available feature
 
-`ScenarioOutline` isn't available in `defineFeature` because you don't have feature file so no `Examples`.
+Since `v.6.5.0`, `ScenarioOutline` (and `RuleScenarioOutline` inside a `Rule`) is also
+supported in `defineFeature`.
 
-Maybe it will be addedd in next version.
+```ts
+import { expect } from 'vitest'
+import { defineFeature } from '@amiceli/vitest-cucumber'
+
+defineFeature('Define feature with ScenarioOutline', (f) => {
+    const seen: Array<{ name: string; age: number }> = []
+
+    f.ScenarioOutline(
+        'Outline with examples',
+        (s, variables) => {
+            s.Given('user <name> is <age> years old', () => {
+                seen.push({
+                    name: String(variables.name),
+                    age: Number(variables.age),
+                })
+            })
+            s.Then('values are recorded', () => {
+                expect(seen.length).toBeGreaterThan(0)
+            })
+        },
+        [
+            { name: 'Alice', age: 30 },
+            { name: 'Bob', age: 42 },
+        ],
+    )
+
+    f.Rule('Compute', (r) => {
+        const computed: number[] = []
+
+        r.RuleScenarioOutline(
+            'Doubles values',
+            (s, variables) => {
+                s.Given('I have <input>', () => {
+                    computed.push(Number(variables.input) * 2)
+                })
+                s.Then('I get <expected>', () => {
+                    expect(computed.at(-1)).toEqual(variables.expected)
+                })
+            },
+            [
+                { input: 2, expected: 4 },
+                { input: 5, expected: 10 },
+            ],
+        )
+    })
+})
+```
+
+`f.ScenarioOutline.skip` / `f.ScenarioOutline.only` (and the same on `r.RuleScenarioOutline`) are also available.
 
 Other features / checks like same step, same scenario etc are present in `defineFeature`.
 
