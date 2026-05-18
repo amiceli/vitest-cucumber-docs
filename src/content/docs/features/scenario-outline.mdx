@@ -6,7 +6,7 @@ description: vitest-cucumber goals
 import { Aside } from '@astrojs/starlight/components';
 
 <Aside type="tip">
-This definition maps to the [`ScenarioOutlineType`](/integrations/utilities#scenariooutlinetype) type. Use [`serializeFeature`](/integrations/utilities#serialization) to parse and serialize feature files.
+This definition maps to the [`ScenarioOutlineType`](/integrations/utilities#scenariooutlinetype) type. Use [`loadFeatureFromText`](/integrations/utilities#parsing) to parse a feature file and [`serializeFeature`](/integrations/utilities#serialization) to convert it to a plain object.
 </Aside>
 
 A `Scenario Outline` should always have an `Examples` block, otherwise **vitest-cucumber**
