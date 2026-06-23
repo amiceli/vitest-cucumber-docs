@@ -5,6 +5,7 @@ import cssVariablesTheme from "./src/themes/css-variables.json"
 
 export default defineConfig({
     markdown: {
+        gfm: true,
         shikiConfig: {
             theme: cssVariablesTheme,
         },

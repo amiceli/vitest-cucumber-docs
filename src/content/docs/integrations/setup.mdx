@@ -3,25 +3,6 @@ title: Vitest Plugin
 description: vitest-cucumber plugin
 ---
 
-import { Aside } from '@astrojs/starlight/components';
-
-**vitest-cucumber** is a framework built on top of [Vitest](https://vitest.dev/). It wraps Vitest's lifecycle methods (`describe`, `test`, `beforeAll`, etc.) behind Gherkin keywords, so your test structure mirrors the *feature* file.
-
-| Vitest | vitest-cucumber | When to use |
-|--------|----------------|-------------|
-| `describe` | `describeFeature` / `Scenario` / `Rule` | Grouping tests — driven by your `.feature` file |
-| `test` | `Given` / `When` / `Then` / `And` / `But` | Individual assertions — each step is a test |
-| `beforeAll` | `BeforeAllScenarios` | One-time setup before all scenarii |
-| `beforeEach` | `BeforeEachScenario` / `Background` | Per-scenario setup |
-| `afterEach` | `AfterEachScenario` | Per-scenario teardown |
-| `afterAll` | `AfterAllScenarios` | One-time teardown after all scenarii |
-
-<Aside type="caution" title="State management">
-Because **vitest-cucumber** controls the test lifecycle, avoid mixing Vitest's `beforeAll`/`beforeEach` with vitest-cucumber hooks in the same file. Use [`Background`](/features/background) for shared `Given` steps, [`Hooks`](/features/hooks) for setup/teardown, [`Predefine steps`](/features/predefine-steps) for reusable steps across scenarii, and [`Structure context`](/features/structure-context) to share state between steps within a scenario.
-</Aside>
-
-## Vitest plugin
-
 Since `4.1.1` vitest-cucumber provides a Vitest plugin to automatically create and update `.spec.ts` files when `.feature` files change.
 
 **This plugin is optional** — it does not change how vitest-cucumber runs tests.
