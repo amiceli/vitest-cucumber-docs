@@ -9,13 +9,15 @@ Since `4.1.1` vitest-cucumber provides a Vitest plugin to automatically create a
 
 **Note**: currently this plugin doesn't work with vitest browser mode.
 
+**Since `7.0.0`** the plugin is exported from `@amiceli/vitest-cucumber/plugin`, not from the main entry point anymore.
+
 ## Use plugin
 
 Add plugin in your `vitest.config.js`:
 
 ```javascript
 import { defineConfig } from "vitest/config"
-import { VitestCucumberPlugin } from "@amiceli/vitest-cucumber"
+import { VitestCucumberPlugin } from "@amiceli/vitest-cucumber/plugin"
 
 export default defineConfig({
     // ...
@@ -28,6 +30,8 @@ export default defineConfig({
     // ...
 })
 ```
+
+**Note**: `specFilesDir` and `featureFilesDir` are folder paths, not glob patterns.
 
 Now when you run vitest, vitest-cucumber will watch your `.feature` file in `src/features`.
 

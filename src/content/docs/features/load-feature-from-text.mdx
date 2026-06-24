@@ -8,7 +8,15 @@ You can load Gherkin feature without path with `loadFeatureFromText`.
 For example :
 
 ```javascript
+import { loadFeatureFromText } from '@amiceli/vitest-cucumber'
 import featureContent from '../example.feature?raw'
 
 const feature = await loadFeatureFromText(featureContent)
+```
+
+Since `7.0.0`, `loadFeature` and `loadFeatureFromText` are also available from the
+dedicated `@amiceli/vitest-cucumber/load-feature` entry point :
+
+```javascript
+import { loadFeature, loadFeatureFromText } from '@amiceli/vitest-cucumber/load-feature'
 ```
