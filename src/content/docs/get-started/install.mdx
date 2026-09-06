@@ -3,6 +3,8 @@ title: Installation
 description: vitest-cucumber goals
 ---
 
+import { Aside } from '@astrojs/starlight/components';
+
 To install **vitest-cucumber**: 
 
 ~~~bash
@@ -23,4 +25,28 @@ vitest --run --coverage
 
 ### Dependencies
 
-Since `3.4.4`, vitest-cucumber requires `Vitest` to be `>=2.0.0`.
+Since [`8.0.0`](https://github.com/amiceli/vitest-cucumber/releases/tag/v8.0.0), vitest-cucumber requires `Vitest` to be `>=5.0.0`.
+
+For older versions, since `3.4.4`, vitest-cucumber requires `Vitest` to be `>=2.0.0`.
+
+### Vitest 5 and mocks
+
+Vitest 5 sets [`clearMocks`](https://vitest.dev/config/#clearmocks) to `true` by default, which clears
+mocks between each step of a scenario.
+
+If your steps share a mock, set `clearMocks` to `false` in your Vitest config :
+
+~~~typescript
+import { defineConfig } from 'vitest/config'
+
+export default defineConfig({
+    test: {
+        clearMocks: false,
+    },
+})
+~~~
+
+<Aside type="caution">
+    This is a **breaking change** of `8.0.0` : with vitest-cucumber `7.x` and Vitest 4, mocks were
+    kept between steps by default.
+</Aside>
