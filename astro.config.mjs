@@ -211,5 +211,6 @@ export default defineConfig({
     server: {
         port: 3333,
     },
-    site: "https://vitest-cucumber.miceli.click/",
+    base: "/vitest-cucumber-docs",
+    site: "https://amiceli.github.io/vitest-cucumber-docs/",
 })
