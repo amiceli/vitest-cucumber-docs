@@ -195,16 +195,6 @@ export default defineConfig({
             customCss: ["./src/styles/custom.css"],
             head: [
                 {
-                    tag: "script",
-                    attrs: {
-                        src: "https://plausible.volpe.xyz/script.js",
-                        "data-website-id":
-                            "9955448a-8fa1-43ed-85ee-8492a6126934",
-                        "data-domains": "vitest-cucumber.miceli.click",
-                        defer: true,
-                    },
-                },
-                {
                     tag: "link",
                     attrs: {
                         src: "/sitemap-index.xml",
