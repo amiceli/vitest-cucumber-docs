@@ -1,4 +1,4 @@
-# [vitest-cucumber-doc](https://vitest-cucumber.miceli.click/)
+# [vitest-cucumber-doc](https://amiceli.github.io/vitest-cucumber-docs/)
 
 This project contains doc for [vitest-cucumber](https://github.com/amiceli/vitest-cucumber).
 
