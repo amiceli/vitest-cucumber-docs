@@ -3,6 +3,9 @@ import starlight from "@astrojs/starlight"
 import { defineConfig } from "astro/config"
 import cssVariablesTheme from "./src/themes/css-variables.json"
 
+const base =
+    process.env.NODE_ENV === "development" ? "/" : "/vitest-cucumber-docs"
+
 export default defineConfig({
     markdown: {
         gfm: true,
@@ -197,7 +200,7 @@ export default defineConfig({
                 {
                     tag: "link",
                     attrs: {
-                        src: "/sitemap-index.xml",
+                        href: `${base}/sitemap-index.xml`,
                         rel: "sitemap",
                     },
                 },
@@ -211,6 +214,6 @@ export default defineConfig({
     server: {
         port: 3333,
     },
-    base: "/vitest-cucumber-docs",
+    base,
     site: "https://amiceli.github.io/vitest-cucumber-docs/",
 })

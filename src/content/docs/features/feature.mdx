@@ -11,15 +11,15 @@ To describe a capability of your application, use the `Feature` keyword. It is t
 
 To structure a `Feature` file, you can use the following parts:
 
-- [`Scenario`](/features/scenario) — to illustrate a concrete example of a behaviour
-- [`Scenario Outline`](/features/scenario-outline) — to run a scenario template with variable `Examples`
-- [`Background`](/features/background) — to define shared `Given` steps that run before each `Scenario`
-- [`Rule`](/features/rule) — to group scenarii under a single business rule
-- Steps — to describe actions with [`Given`](/features/scenario), [`When`](/features/scenario), [`Then`](/features/scenario), `And`, `But`
-- [`Tags`](/features/gherkin-tags) — to annotate and filter scenarii
-- [`DocStrings`](/features/doc-strings) — to pass multi-line text arguments to steps
-- [`DataTables`](/features/data-tables) — to pass tabular data arguments to steps
-- [Step expressions](/features/step-expression) — to match steps with parameters
+- [`Scenario`](../scenario) — to illustrate a concrete example of a behaviour
+- [`Scenario Outline`](../scenario-outline) — to run a scenario template with variable `Examples`
+- [`Background`](../background) — to define shared `Given` steps that run before each `Scenario`
+- [`Rule`](../rule) — to group scenarii under a single business rule
+- Steps — to describe actions with [`Given`](../scenario), [`When`](../scenario), [`Then`](../scenario), `And`, `But`
+- [`Tags`](../gherkin-tags) — to annotate and filter scenarii
+- [`DocStrings`](../doc-strings) — to pass multi-line text arguments to steps
+- [`DataTables`](../data-tables) — to pass tabular data arguments to steps
+- [Step expressions](../step-expression) — to match steps with parameters
 
 To add a description to your `Feature`, write free-text lines between the `Feature:` keyword and the first `Scenario`, `Background`, or `Rule`. **vitest-cucumber** parses and preserves this description.
 

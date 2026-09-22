@@ -12,7 +12,10 @@ function collectRoutes(dir: string): Set<string> {
         } else if (entry.endsWith(".mdx") || entry.endsWith(".md")) {
             const rel = relative(docsRoot, full)
             // /features/scenario.mdx → /features/scenario
-            const route = `/${rel.replace(/\.(mdx?|md)$/, "")}`
+            const route = `/${rel.replace(/\.(mdx?|md)$/, "")}`.replace(
+                /^\/index$/,
+                "/",
+            )
             routes.add(route)
             // index files also serve as their directory route
             if (route.endsWith("/index")) {
@@ -25,13 +28,17 @@ function collectRoutes(dir: string): Set<string> {
 
 function extractInternalLinks(content: string): string[] {
     const links: string[] = []
-    // markdown links: [text](/path) or [text](/path#anchor)
-    for (const m of content.matchAll(/\]\((\/?[a-z][^)]*)\)/g)) {
+    // markdown links: [text](path) or [text](path#anchor)
+    for (const m of content.matchAll(/\]\(([^)#][^)]*)\)/g)) {
         const href = m[1].split("#")[0]
-        if (href.startsWith("/")) links.push(href)
+        if (!href.includes(":")) links.push(href)
     }
     // JSX href props: href="/path"
     for (const m of content.matchAll(/href="(\/[^"#]*)(?:#[^"]*)?"/g)) {
+        links.push(m[1])
+    }
+    // Starlight hero actions: link: path
+    for (const m of content.matchAll(/^\s*link:\s*([^\s#]+)/gm)) {
         links.push(m[1])
     }
     return links
@@ -44,9 +51,16 @@ function checkFile(filePath: string) {
     const content = readFileSync(filePath, "utf-8")
     const links = extractInternalLinks(content)
     const rel = relative(docsRoot, filePath)
+    const route = `/${rel.replace(/\.(mdx?|md)$/, "")}`.replace(
+        /^\/index$/,
+        "/",
+    )
+    const baseRoute = route.endsWith("/") ? route : `${route}/`
 
     for (const link of links) {
-        const normalized = link.replace(/\/$/, "") || "/"
+        const resolved = new URL(link, `https://docs.example${baseRoute}`)
+            .pathname
+        const normalized = resolved.replace(/\/$/, "") || "/"
         if (!routes.has(normalized)) {
             console.error(`  ${rel}: broken link → ${link}`)
             errors++
